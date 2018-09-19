@@ -8,6 +8,10 @@ module.exports = {
 		res.json({
 			nama:"ini detail"
 		})
+	},
+	getData:(req, res) => {
+		res.json({
+			hello:req.params.id
+		})
 	}
-
 }

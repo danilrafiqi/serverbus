@@ -6,4 +6,6 @@ router.get('/',userCtrl.getNama )
 
 router.get('/detail', userCtrl.getDetail)
 
+router.get('/:id', userCtrl.getData)
+
 module.exports = router;
