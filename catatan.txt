@@ -1,0 +1,5 @@
+buat folder
+masuk ke folder
+npm init
+install express
+server.js
