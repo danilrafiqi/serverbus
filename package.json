@@ -10,8 +10,10 @@
   "author": "danilr",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "knex": "^0.15.2",
-    "mysql": "^2.16.0"
+    "mysql": "^2.16.0",
+    "sqlite3": "^4.0.2"
   }
 }
