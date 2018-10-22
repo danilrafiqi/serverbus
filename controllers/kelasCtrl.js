@@ -1,0 +1,62 @@
+const knex = require('../db/knex')
+const table = 'kelas'
+
+module.exports = {
+	all: (req, res) => {
+		knex.select().from(table)
+	    .then(datas =>{
+	      res.send(datas)
+	    })
+	},
+	detail: (req, res) => {
+		knex.select().from(table)
+			.where('id', req.params.id)
+	    .then(datas =>{
+	      res.send(datas)
+	    })
+	},
+	post: (req, res) => {
+		const data = {
+			id: req.body.id,
+			kode: req.body.kode,
+			nama_kelas: req.body.nama_kelas
+		}
+
+	    knex(table).insert(data)
+	    .then(datas =>{
+	      res.send('success')
+	    })
+	    .catch(err =>{
+	      res.send('error disini : '+ err)
+	    })
+	},
+	edit:(req, res) => {
+		const data = {
+			id: req.body.id,
+			kode: req.body.kode,
+			nama_kelas: req.body.nama_kelas
+		}
+
+	    knex(table)
+		    .where('id', req.params.id)
+		    .update(data)
+		    .then(datas =>{
+		      res.send('success update : '+ req.params.id)
+		    })
+		    .catch(err =>{
+		      res.send('error disini : '+ err)
+		    })
+	},
+	delete: (req, res) => {
+	    knex(table)
+	    .where('id', req.params.id)
+	    .del()
+	    .then(() =>{
+	      res.send('success delete : '+ req.params.id)
+	    })
+	    .catch(err =>{
+	      res.send('error disini : '+ err)
+	    })
+	}
+
+}
