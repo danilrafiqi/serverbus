@@ -18,11 +18,14 @@ module.exports = {
 	},
 
 	post: (req, res) => {
+		const uuidv4 = require('uuid/v4')
 		const data = {
-			id: req.body.id,
+			id: uuidv4(),
+			kode:req.body.kode,
 			nama: req.body.nama,
 			alamat: req.body.alamat,
-			no_hp: req.body.no_hp
+			no_hp: req.body.no_hp,
+			email:req.body.email
 		}
 	knex(table).insert(data)
 	    .then(datas =>{

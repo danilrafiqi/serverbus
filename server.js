@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/user', user)
-app.use('/po', pemesan)
+app.use('/po', po)
 app.use('/pemesan', pemesan)
 app.use('/kelas', kelas)
 
