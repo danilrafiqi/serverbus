@@ -1,5 +1,7 @@
 const knex = require('../db/knex')
 const table = 'pemesan'
+const knexDate= knex.fn.now()
+const uuidv4 = require('uuid/v4')
 
 module.exports = {
 	all: (req, res) => {
@@ -17,10 +19,11 @@ module.exports = {
 	},
 	post: (req, res) => {
 		const data = {
-			id: req.body.id,
+			id: uuidv4(),
 			nama: req.body.nama,
 			alamat: req.body.alamat,
-			no_hp: req.body.no_hp
+			no_hp: req.body.no_hp,
+			email: req.body.email
 		}
 
 	    knex(table).insert(data)
@@ -36,7 +39,8 @@ module.exports = {
 			id: req.body.id,
 			nama: req.body.nama,
 			alamat: req.body.alamat,
-			no_hp: req.body.no_hp
+			no_hp: req.body.no_hp,
+			updated_at: knexDate
 		}
 
 	    knex(table)
