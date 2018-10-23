@@ -1,7 +1,9 @@
 const knex = require('../db/knex')
-const table = 'user'
+const table = 'po'
 const knexDate= knex.fn.now()
 const uuidv4 = require('uuid/v4')
+
+
 
 module.exports = {
 	all: (req, res) => {
@@ -10,6 +12,7 @@ module.exports = {
 	      res.send(datas)
 	    })
 	},
+
 	detail: (req, res) => {
 		knex.select().from(table)
 			.where('id', req.params.id)
@@ -17,34 +20,38 @@ module.exports = {
 	      res.send(datas)
 	    })
 	},
+
 	post: (req, res) => {
 		const data = {
 			id: uuidv4(),
-			password: req.body.password,
-			foto: req.body.foto,
-			hak_akses: req.body.hak_akses,
+			kode: req.body.kode,
+			nama: req.body.nama,
+			alamat: req.body.alamat,
+			no_hp: req.body.no_hp,
 			email: req.body.email
 		}
 
-	    knex(table).insert(data)
-	    .then(datas =>{
-	      res.send('success')
-	    })
-	    .catch(err =>{
-	      res.send('error disini : '+ err)
-	    })
+		knex(table).insert(data)
+	    	.then(datas =>{
+	     		res.send('success')
+	   		})
+	    	.catch(err =>{
+	      		res.send('error disini : '+ err)
+	    	})
 	},
+
 	edit:(req, res) => {
+		
 		const data = {
 			id: req.body.id,
-			password: req.body.password,
-			foto: req.body.foto,
-			hak_akses: req.body.hak_akses,
+			kode: req.body.kode,
+			nama: req.body.nama,
+			alamat: req.body.alamat,
+			no_hp: req.body.no_hp,
 			email: req.body.email,
 			updated_at: knexDate
 		}
-
-	    knex(table)
+		knex(table)
 		    .where('id', req.params.id)
 		    .update(data)
 		    .then(datas =>{
@@ -54,6 +61,7 @@ module.exports = {
 		      res.send('error disini : '+ err)
 		    })
 	},
+
 	delete: (req, res) => {
 	    knex(table)
 	    .where('id', req.params.id)
