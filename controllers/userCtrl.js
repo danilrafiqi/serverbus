@@ -3,6 +3,7 @@ const table = 'user'
 const knexDate= knex.fn.now()
 const uuidv4 = require('uuid/v4')
 
+
 module.exports = {
 	all: (req, res) => {
 		knex.select().from(table)
