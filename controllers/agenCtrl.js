@@ -1,5 +1,8 @@
 const knex = require('../db/knex')
 const table = 'agen'
+const knexDate= knex.fn.now()
+const uuidv4 = require('uuid/v4')
+
 
 module.exports = {
 	all: (req, res) => {
@@ -17,7 +20,7 @@ module.exports = {
 	},
 	post: (req, res) => {
 		const data = {
-			id: req.body.id,
+			id: uuidv4(),
 			nama: req.body.nama,
 			lokasi: req.body.lokasi,
 			no_hp: req.body.no_hp,
