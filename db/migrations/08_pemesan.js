@@ -1,11 +1,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('pemesan', function(table) {
-    table
-      .uuid('id')
-      .primary()
-      .unique();
+    table.uuid('id_pemesan').primary().unique();
     table.string('nama');
-    table.string('alamat');
     table.string('no_hp');
     table.string('email');
     table.timestamp('created_at').defaultTo(knex.fn.now());

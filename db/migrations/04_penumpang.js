@@ -1,7 +1,7 @@
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('pemesan', function(table) {
+  return knex.schema.createTable('penumpang', function(table) {
     table
-      .uuid('id')
+      .uuid('id_penumpang')
       .primary()
       .unique();
     table.string('nama');
@@ -13,5 +13,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('pemesan');
+  return knex.schema.dropTable('penumpang');
 };

@@ -1,11 +1,10 @@
 
 exports.up = function(knex, Promise) {
 	return knex.schema.createTable('kelas', function (table) {
-		table.uuid('id').primary().unique()
-		table.string('kode');
+		table.uuid('id_kelas').primary().unique()
 		table.string('nama_kelas');
-		table.uuid('id_po');
-		table.foreign('id_po').references('id').inTable('po');
+		table.string('deskripsi');
+		table.string('harga');
 		table.timestamp('created_at').defaultTo(knex.fn.now());
 		table.timestamp('updated_at').defaultTo(knex.fn.now());
 	})
