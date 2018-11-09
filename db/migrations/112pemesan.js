@@ -5,7 +5,6 @@ exports.up = function(knex, Promise) {
       .primary()
       .unique();
     table.string('nama');
-    table.string('alamat');
     table.string('no_hp');
     table.string('email');
     table.timestamp('created_at').defaultTo(knex.fn.now());
