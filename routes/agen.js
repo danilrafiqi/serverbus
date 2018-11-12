@@ -3,9 +3,9 @@ const router = express.Router()
 const agenCtrl = require('../controllers/agenCtrl')
 
 router.get('/',agenCtrl.all )
-router.get('/:id',agenCtrl.detail )
+router.get('/:id_agen',agenCtrl.detail )
 router.post('/', agenCtrl.post)
-router.put('/:id', agenCtrl.edit)
-router.delete('/:id', agenCtrl.delete)
+router.put('/:id_agen', agenCtrl.edit)
+router.delete('/:id_agen', agenCtrl.delete)
 
 module.exports = router;
