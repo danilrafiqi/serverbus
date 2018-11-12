@@ -1,5 +1,5 @@
 const knex = require('../db/knex')
-const table = 'pemesan'
+const table = 'transaksi'
 const knexDate= knex.fn.now()
 const uuidv4 = require('uuid/v4')
 
@@ -15,7 +15,7 @@ module.exports = {
 
 	detail: (req, res) => {
 		knex.select().from(table)
-			.where('id_pemesan', req.params.id_pemesan)
+			.where('id_transaksi', req.params.id_transaksi)
 	    .then(datas =>{
 	      res.send(datas)
 	    })
@@ -23,10 +23,14 @@ module.exports = {
 
 	post: (req, res) => {
 		const data = {
-			id_pemesan: uuidv4(),
-			nama: req.body.nama,
-			no_hp: req.body.no_hp,
-			email: req.body.email
+			id_transaksi: uuidv4(),
+			bukti_pembayaran: req.body.bukti_pembayaran,
+			status_transaksi: req.body.status_transaksi,
+			total: req.body.total,
+			tgl_pesan: req.body.tgl_pesan,
+			expired: req.body.expired,
+			updated_at: knexDate,
+			id_pemesan: req.body.id_pemesan
 		}
 
 		knex(table).insert(data)
@@ -41,16 +45,18 @@ module.exports = {
 	edit:(req, res) => {
 		
 		const data = {
-			nama: req.body.nama,
-			no_hp: req.body.no_hp,
-			updated_at: knexDate,
-			email: req.body.email
+			bukti_pembayaran: req.body.bukti_pembayaran,
+			status_transaksi: req.body.status_transaksi,
+			total: req.body.total,
+			tgl_pesan: req.body.tgl_pesan,
+			expired: req.body.expired,
+			id_pemesan: req.body.id_pemesan
 		}
 		knex(table)
-		    .where('id_pemesan', req.params.id_pemesan)
+		    .where('id_transaksi', req.params.id_transaksi)
 		    .update(data)
 		    .then(datas =>{
-		      res.send('success update : '+ req.params.id_pemesan)
+		      res.send('success update : '+ req.params.id_transaksi)
 		    })
 		    .catch(err =>{
 		      res.send('error disini : '+ err)
@@ -59,10 +65,10 @@ module.exports = {
 
 	delete: (req, res) => {
 	    knex(table)
-	    .where('id_pemesan', req.params.id_pemesan)
+	    .where('id_transaksi', req.params.id_transaksi)
 	    .del()
 	    .then(() =>{
-	      res.send('success delete : '+ req.params.id_pemesan)
+	      res.send('success delete : '+ req.params.id_transaksi)
 	    })
 	    .catch(err =>{
 	      res.send('error disini : '+ err)
