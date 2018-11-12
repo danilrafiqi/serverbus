@@ -1,5 +1,5 @@
 const knex = require('../db/knex')
-const table = 'agen'
+const table = 'aturan'
 const knexDate= knex.fn.now()
 const uuidv4 = require('uuid/v4')
 
@@ -15,18 +15,18 @@ module.exports = {
 
 	detail: (req, res) => {
 		knex.select().from(table)
-			.where('id_agen', req.params.id_agen)
+			.where('id_aturan', req.params.id_aturan)
 	    .then(datas =>{
 	      res.send(datas)
 	    })
 	},
+
 	post: (req, res) => {
 		const data = {
-			id_agen: uuidv4(),
-			nama: req.body.nama,
-			lokasi: req.body.lokasi,
-			no_hp: req.body.no_hp,
-			id_po: req.body.id_po
+			id_aturan: uuidv4(),
+			aturan_ppn: req.body.aturan_ppn,
+			aturan_pembatalan: req.body.aturan_pembatalan,
+			aturan_penumpang: req.body.aturan_penumpang
 		}
 
 		knex(table).insert(data)
@@ -41,16 +41,15 @@ module.exports = {
 	edit:(req, res) => {
 		
 		const data = {
-			nama: req.body.nama,
-			lokasi: req.body.lokasi,
-			no_hp: req.body.no_hp,
-			id_po: req.body.id_po
+			aturan_ppn: req.body.aturan_ppn,
+			aturan_pembatalan: req.body.aturan_pembatalan,
+			aturan_penumpang: req.body.aturan_penumpang
 		}
 		knex(table)
-		    .where('id_agen', req.params.id_agen)
+		    .where('id_aturan', req.params.id_aturan)
 		    .update(data)
 		    .then(datas =>{
-		      res.send('success update : '+ req.params.id_agen)
+		      res.send('success update : '+ req.params.id_aturan)
 		    })
 		    .catch(err =>{
 		      res.send('error disini : '+ err)
@@ -59,10 +58,10 @@ module.exports = {
 
 	delete: (req, res) => {
 	    knex(table)
-	    .where('id_agen', req.params.id_agen)
+	    .where('id_aturan', req.params.id_aturan)
 	    .del()
 	    .then(() =>{
-	      res.send('success delete : '+ req.params.id_agen)
+	      res.send('success delete : '+ req.params.id_aturan)
 	    })
 	    .catch(err =>{
 	      res.send('error disini : '+ err)

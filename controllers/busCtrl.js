@@ -1,7 +1,8 @@
 const knex = require('../db/knex')
 const table = 'bus'
 const knexDate= knex.fn.now()
-const uuidv4 = require('uuid/v4')
+//const uuidv4 = require('uuid/v4')
+
 
 
 module.exports = {
@@ -11,51 +12,59 @@ module.exports = {
 	      res.send(datas)
 	    })
 	},
+
 	detail: (req, res) => {
 		knex.select().from(table)
-			.where('id', req.params.id)
+			.where('no_plat', req.params.no_plat)
 	    .then(datas =>{
 	      res.send(datas)
 	    })
 	},
+
 	post: (req, res) => {
 		const data = {
-			id: uuidv4(),
-			plat: req.body.plat,
+			no_plat: req.body.no_plat,
+			status: req.body.status,
+			jumlah_kursi: req.body.jumlah_kursi,
+			tipe_kursi: req.body.tipe_kursi,
 			id_kelas: req.body.id_kelas
 		}
 
-	    knex(table).insert(data)
-	    .then(datas =>{
-	      res.send('Penambahan Data Bus Berhasil')
-	    })
-	    .catch(err =>{
-	      res.send('Penambahan Data Bus error  : '+ err)
-	    })
+		knex(table).insert(data)
+	    	.then(datas =>{
+	     		res.send('success')
+	   		})
+	    	.catch(err =>{
+	      		res.send('error disini : '+ err)
+	    	})
 	},
+
 	edit:(req, res) => {
+		
 		const data = {
-			id: req.body.id,
-			plat: req.body.plat,
+			no_plat: req.body.no_plat,
+			status: req.body.status,
+			jumlah_kursi: req.body.jumlah_kursi,
+			tipe_kursi: req.body.tipe_kursi,
 			id_kelas: req.body.id_kelas
 		}
-
-	    knex(table)
-		    .where('id', req.params.id)
+		knex(table)
+		    .where('no_plat', req.params.no_plat)
 		    .update(data)
 		    .then(datas =>{
-		      res.send('Success update data bus : '+ req.params.id)
+		      res.send('success update : '+ req.params.no_plat)
 		    })
 		    .catch(err =>{
-		      res.send('error update data bus : '+ err)
+		      res.send('error disini : '+ err)
 		    })
 	},
+
 	delete: (req, res) => {
 	    knex(table)
-	    .where('id', req.params.id)
+	    .where('no_plat', req.params.no_plat)
 	    .del()
 	    .then(() =>{
-	      res.send('success delete : '+ req.params.id)
+	      res.send('success delete : '+ req.params.no_plat)
 	    })
 	    .catch(err =>{
 	      res.send('error disini : '+ err)

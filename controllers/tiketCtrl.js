@@ -4,6 +4,7 @@ const knexDate= knex.fn.now()
 const uuidv4 = require('uuid/v4')
 
 
+
 module.exports = {
 	all: (req, res) => {
 		knex.select().from(table)
@@ -11,65 +12,67 @@ module.exports = {
 	      res.send(datas)
 	    })
 	},
+
 	detail: (req, res) => {
 		knex.select().from(table)
-			.where('id', req.params.id)
+			.where('id_tiket', req.params.id_tiket)
 	    .then(datas =>{
 	      res.send(datas)
 	    })
 	},
+
 	post: (req, res) => {
 		const data = {
-			id: uuidv4(),
-			tanggal: req.body.tanggal,
-			status: req.body.status,
-			expire: req.body.expire,
-			id_pemesan: req.body.id_pemesan,
+			id_tiket: uuidv4(),
+			no_kursi: req.body.no_kursi,
+			tgl_pemesanan: req.body.tgl_pemesanan,
+			waktu_pemesanan: req.body.waktu_pemesanan,
+			id_harga: req.body.id_harga,
 			id_jadwal: req.body.id_jadwal,
-			id_kursi: req.body.id_kursi,
-			id_agen: req.body.id_agen
-
+			id_penumpang: req.body.id_penumpang,
+			id_transaksi: req.body.id_transaksi
 		}
 
-	    knex(table).insert(data)
-	    .then(datas =>{
-	      res.send('Penambahan Data Tiket Berhasil')
-	    })
-	    .catch(err =>{
-	      res.send('Penambahan Data Tiket error  : '+ err)
-	    })
+		knex(table).insert(data)
+	    	.then(datas =>{
+	     		res.send('success')
+	   		})
+	    	.catch(err =>{
+	      		res.send('error disini : '+ err)
+	    	})
 	},
-	edit:(req, res) => {
-		const data = {
-			id: req.body.id,
-			tanggal: req.body.tanggal,
-			status: req.body.status,
-			expire: req.body.expire,
-			id_pemesan: req.body.id_pemesan,
-			id_jadwal: req.body.id_jadwal,
-			id_kursi: req.body.id_kursi,
-			id_agen: req.body.id_agen
-		}
 
-	    knex(table)
-		    .where('id', req.params.id)
+	edit:(req, res) => {
+		
+		const data = {
+			no_kursi: req.body.no_kursi,
+			tgl_pemesanan: req.body.tgl_pemesanan,
+			waktu_pemesanan: req.body.waktu_pemesanan,
+			id_harga: req.body.id_harga,
+			id_jadwal: req.body.id_jadwal,
+			id_penumpang: req.body.id_penumpang,
+			id_transaksi: req.body.id_transaksi
+		}
+		knex(table)
+		    .where('id_tiket', req.params.id_tiket)
 		    .update(data)
 		    .then(datas =>{
-		      res.send('Success update data Tiket : '+ req.params.id)
+		      res.send('success update : '+ req.params.id_tiket)
 		    })
 		    .catch(err =>{
-		      res.send('error update data Tiket : '+ err)
+		      res.send('error disini : '+ err)
 		    })
 	},
+
 	delete: (req, res) => {
 	    knex(table)
-	    .where('id', req.params.id)
+	    .where('id_tiket', req.params.id_tiket)
 	    .del()
 	    .then(() =>{
-	      res.send('success delete data Tiket : '+ req.params.id)
+	      res.send('success delete : '+ req.params.id_tiket)
 	    })
 	    .catch(err =>{
-	      res.send('error delete data Tiket : '+ err)
+	      res.send('error disini : '+ err)
 	    })
 	}
 
