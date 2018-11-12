@@ -31,6 +31,7 @@ module.exports = {
 			foto: req.body.foto,
 			jenis_kelamin: req.body.jenis_kelamin,
 			hak_akses: req.body.hak_akses,
+			updated_at: knexDate,
 			id_po: req.body.id_po
 		}
 

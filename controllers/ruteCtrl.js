@@ -23,7 +23,7 @@ module.exports = {
 
 	post: (req, res) => {
 		const data = {
-			id_rute: uuidv4v4(),
+			id_rute: uuidv4(),
 			nama: req.body.nama,
 			deskripsi: req.body.deskripsi,
 			lama_keberangkatan: req.body.lama_keberangkatan
@@ -43,6 +43,8 @@ module.exports = {
 		const data = {
 			nama: req.body.nama,
 			deskripsi: req.body.deskripsi,
+			updated_at: knexDate,
+			updated_at: knexDate,
 			lama_keberangkatan: req.body.lama_keberangkatan
 		}
 		knex(table)

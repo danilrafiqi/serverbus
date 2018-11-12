@@ -29,6 +29,7 @@ module.exports = {
 			email: req.body.email,
 			nama: req.body.nama,
 			jenis_kelamin: req.body.jenis_kelamin,
+			jenis_kelamin: req.body.jenis_kelamin,
 			foto: req.body.foto
 		}
 
@@ -49,6 +50,7 @@ module.exports = {
 			email: req.body.email,
 			nama: req.body.nama,
 			jenis_kelamin: req.body.jenis_kelamin,
+			updated_at: knexDate,
 			foto: req.body.foto
 		}
 		knex(table)

@@ -15,7 +15,7 @@ module.exports = {
 
 	detail: (req, res) => {
 		knex.select().from(table)
-			.where('id_po', req.params.id_po)
+			.where('id_po', req.params.id)
 	    .then(datas =>{
 	      res.send(datas)
 	    })
@@ -46,13 +46,14 @@ module.exports = {
 			alamat: req.body.alamat,
 			no_hp: req.body.no_hp,
 			email: req.body.email,
+			updated_at: knexDate,
 			updated_at: knexDate
 		}
 		knex(table)
-		    .where('id_po', req.params.id_po)
+		    .where('id_po', req.params.id)
 		    .update(data)
 		    .then(datas =>{
-		      res.send('success update : '+ req.params.id_po)
+		      res.send('success update : '+ req.params.id)
 		    })
 		    .catch(err =>{
 		      res.send('error disini : '+ err)
@@ -61,10 +62,10 @@ module.exports = {
 
 	delete: (req, res) => {
 	    knex(table)
-	    .where('id_po', req.params.id_po)
+	    .where('id_po', req.params.id)
 	    .del()
 	    .then(() =>{
-	      res.send('success delete : '+ req.params.id_po)
+	      res.send('success delete : '+ req.params.id)
 	    })
 	    .catch(err =>{
 	      res.send('error disini : '+ err)

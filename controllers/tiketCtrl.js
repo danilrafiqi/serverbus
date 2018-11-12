@@ -30,6 +30,7 @@ module.exports = {
 			id_harga: req.body.id_harga,
 			id_jadwal: req.body.id_jadwal,
 			id_penumpang: req.body.id_penumpang,
+			updated_at: knexDate,
 			id_transaksi: req.body.id_transaksi
 		}
 

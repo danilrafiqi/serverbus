@@ -49,6 +49,7 @@ module.exports = {
 			waktu_keberangkatan: req.body.waktu_keberangkatan,
 			harga: req.body.harga,
 			no_plat: req.body.no_plat,
+			updated_at: knexDate,
 			id_rute: req.body.id_rute
 		}
 		knex(table)

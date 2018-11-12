@@ -26,6 +26,7 @@ module.exports = {
 			id_tujuan: uuidv4(),
 			nama: req.body.nama,
 			lokasi_awal: req.body.lokasi_awal,
+			updated_at: knexDate,
 			lokasi_tujuan: req.body.lokasi_tujuan
 		}
 

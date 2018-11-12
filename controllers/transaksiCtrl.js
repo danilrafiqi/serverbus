@@ -29,6 +29,7 @@ module.exports = {
 			total: req.body.total,
 			tgl_pesan: req.body.tgl_pesan,
 			expired: req.body.expired,
+			updated_at: knexDate,
 			id_pemesan: req.body.id_pemesan
 		}
 

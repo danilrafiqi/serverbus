@@ -46,6 +46,7 @@ module.exports = {
 			status: req.body.status,
 			jumlah_kursi: req.body.jumlah_kursi,
 			tipe_kursi: req.body.tipe_kursi,
+			updated_at: knexDate,
 			id_kelas: req.body.id_kelas
 		}
 		knex(table)

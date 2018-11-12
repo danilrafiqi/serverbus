@@ -44,6 +44,7 @@ module.exports = {
 			nama: req.body.nama,
 			lokasi: req.body.lokasi,
 			no_hp: req.body.no_hp,
+			updated_at: knexDate,
 			id_po: req.body.id_po
 		}
 		knex(table)

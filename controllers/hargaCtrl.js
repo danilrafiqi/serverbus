@@ -43,6 +43,7 @@ module.exports = {
 		const data = {
 			id_rute: req.body.id_rute,
 			id_tujuan: req.body.id_tujuan,
+			updated_at: knexDate,
 			id_agen: req.body.id_agen
 		}
 		knex(table)

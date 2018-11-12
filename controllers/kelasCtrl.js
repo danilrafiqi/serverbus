@@ -43,6 +43,7 @@ module.exports = {
 		const data = {
 			nama_kelas: req.body.nama_kelas,
 			deskripsi: req.body.deskripsi,
+			updated_at: knexDate,
 			harga: req.body.harga
 		}
 		knex(table)
