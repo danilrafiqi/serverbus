@@ -7,6 +7,8 @@ exports.up = function(knex, Promise) {
 		table.string('tipe_kursi');
 		table.uuid('id_kelas');
 		table.foreign('id_kelas').references('id_kelas').inTable('kelas');
+		table.uuid('id_po');
+		table.foreign('id_po').references('id_po').inTable('po');
 		table.timestamp('created_at').defaultTo(knex.fn.now());
 		table.timestamp('updated_at').defaultTo(knex.fn.now());
 	})
