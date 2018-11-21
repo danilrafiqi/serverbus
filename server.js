@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
 const bodyParser = require("body-parser");
+const cors = require('cors')
+
+
 
 
 const po = require('./routes/po')
@@ -21,6 +24,7 @@ const jadwal = require('./routes/jadwal')
 const harga = require('./routes/harga')
 const tiket = require('./routes/tiket')
 
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
