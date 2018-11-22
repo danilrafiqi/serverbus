@@ -27,6 +27,7 @@ module.exports = {
   post: (req, res) => {
     const data = {
       id_harga: uuidv4(),
+      harga: req.body.harga,
       id_rute: req.body.id_rute,
       id_tujuan: req.body.id_tujuan,
       id_agen: req.body.id_agen
@@ -45,6 +46,7 @@ module.exports = {
   edit: (req, res) => {
     const data = {
       id_rute: req.body.id_rute,
+      harga: req.body.harga,
       id_tujuan: req.body.id_tujuan,
       updated_at: knexDate,
       id_agen: req.body.id_agen
