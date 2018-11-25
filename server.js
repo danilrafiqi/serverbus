@@ -21,6 +21,8 @@ const transaksi = require('./routes/transaksi');
 const jadwal = require('./routes/jadwal');
 const harga = require('./routes/harga');
 const tiket = require('./routes/tiket');
+// untuk chart
+const chart = require('./routes/chart');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -43,6 +45,8 @@ app.use('/transaksi', transaksi);
 app.use('/jadwal', jadwal);
 app.use('/harga', harga);
 app.use('/tiket', tiket);
+//chart
+app.use('/chart', chart);
 
 const port = process.env.PORT || 2018;
 app.listen(port, process.env.IP, () => {
