@@ -25,17 +25,17 @@ module.exports = {
   },
 
   post: (req, res) => {
-    // let uploadFile = req.files.file;
-    // const fileName = req.files.file.name;
-    // uploadFile.mv(`${__dirname}/public/files/${fileName}`, function(err) {
-    //   if (err) {
-    //     return res.status(500).send(err);
-    //   }
+    let uploadFile = req.files.file;
+    const fileName = req.files.file.name;
+    uploadFile.mv(`${__dirname}/public/files/${fileName}`, function(err) {
+      if (err) {
+        return res.status(500).send(err);
+      }
 
-    //   res.json({
-    //     file: `public/${req.files.file.name}`
-    //   });
-    // });
+      res.json({
+        file: `public/files/${req.files.file.name}`
+      });
+    });
 
     const data = {
       id_admin: uuidv4(),
