@@ -77,7 +77,7 @@ module.exports = {
       nama: req.body.nama,
       jenis_kelamin: req.body.jenis_kelamin,
       updated_at: knexDate,
-      foto: req.body.foto
+      foto: req.file.path
     };
     knex(table)
       .where('id_admin', req.params.id_admin)
