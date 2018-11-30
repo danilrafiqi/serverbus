@@ -56,7 +56,7 @@ module.exports = {
       email: req.body.email,
       nama: req.body.nama,
       jenis_kelamin: req.body.jenis_kelamin,
-      foto: req.file.filename
+      foto: req.file.path
     };
 
     knex(table)

@@ -28,6 +28,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use('/uploads', express.static('uploads'));
 app.use('/po', po);
 app.use('/rute', rute);
 app.use('/kelas', kelas);
