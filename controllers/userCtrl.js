@@ -2,6 +2,17 @@ const knex = require('../db/knex');
 const table = 'user';
 const knexDate = knex.fn.now();
 const uuidv4 = require('uuid/v4');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './uploads');
+  },
+  filename: (req, file, cb) => {
+    cb(null, new Date().toISOString() + file.originalname);
+  }
+});
+const upload = multer({ storage: storage });
 
 module.exports = {
   all: (req, res) => {
@@ -23,7 +34,7 @@ module.exports = {
         res.send(datas);
       });
   },
-
+  unggah: upload.single('foto'),
   post: (req, res) => {
     const data = {
       id_user: uuidv4(),
@@ -31,7 +42,7 @@ module.exports = {
       password: req.body.password,
       no_hp: req.body.no_hp,
       nama: req.body.nama,
-      foto: req.body.foto,
+      foto: req.file.path,
       jenis_kelamin: req.body.jenis_kelamin,
       hak_akses: req.body.hak_akses,
       updated_at: knexDate,

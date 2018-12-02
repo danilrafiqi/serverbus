@@ -29,7 +29,8 @@ module.exports = {
       id_aturan: uuidv4(),
       aturan_ppn: req.body.aturan_ppn,
       aturan_pembatalan: req.body.aturan_pembatalan,
-      aturan_penumpang: req.body.aturan_penumpang
+      aturan_penumpang: req.body.aturan_penumpang,
+      id_po: req.body.id_po
     };
 
     knex(table)

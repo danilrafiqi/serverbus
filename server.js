@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const morgan = require('morgan');
 
 const po = require('./routes/po');
 const rute = require('./routes/rute');
@@ -24,8 +25,8 @@ const tiket = require('./routes/tiket');
 // untuk chart
 const chart = require('./routes/chart');
 //untuk pencarian tiket
-const jadwal = require('./routes/cariJadwal');
-
+// const jadwal = require('./routes/cariJadwal');
+app.use(morgan('dev'));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
