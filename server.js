@@ -24,7 +24,7 @@ const tiket = require('./routes/tiket');
 // untuk chart
 const chart = require('./routes/chart');
 //untuk pencarian tiket
-const jadwal = require('./routes/cariJadwal');
+const cariJadwal = require('./routes/cariJadwal');
 
 app.use(cors());
 app.use(bodyParser.json());
