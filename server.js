@@ -16,7 +16,7 @@ const bank = require('./routes/bank');
 const agen = require('./routes/agen');
 const user = require('./routes/user');
 const bus = require('./routes/bus');
-//const kursi = require('./routes/kursi')
+const kursi = require('./routes/kursi');
 
 const transaksi = require('./routes/transaksi');
 const jadwal = require('./routes/jadwal');
@@ -44,7 +44,7 @@ app.use('/bank', bank);
 app.use('/agen', agen);
 app.use('/user', user);
 app.use('/bus', bus);
-//app.use('/kursi', kursi)
+app.use('/kursi', kursi);
 app.use('/transaksi', transaksi);
 app.use('/jadwal', jadwal);
 app.use('/harga', harga);
