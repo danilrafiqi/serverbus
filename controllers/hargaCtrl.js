@@ -8,7 +8,7 @@ module.exports = {
     knex
       .select()
       .from(table)
-      .orderBy('created_at', 'desc')
+      // .orderBy('created_at', 'desc')
       .then(datas => {
         res.send(datas);
       });

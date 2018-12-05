@@ -2,6 +2,18 @@ const knex = require('../db/knex');
 const table = 'admin';
 const knexDate = knex.fn.now();
 const uuidv4 = require('uuid/v4');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './uploads');
+  },
+  filename: (req, file, cb) => {
+    cb(null, new Date().toISOString() + file.originalname);
+  }
+});
+
+const upload = multer({ storage: storage });
 
 module.exports = {
   all: (req, res) => {
@@ -13,7 +25,7 @@ module.exports = {
         res.send(datas);
       });
   },
-
+  unggah: upload.single('foto'),
   detail: (req, res) => {
     knex
       .select()
@@ -23,20 +35,9 @@ module.exports = {
         res.send(datas);
       });
   },
-
+  // upload: (req, res) => {},
   post: (req, res) => {
-    // let uploadFile = req.files.file;
-    // const fileName = req.files.file.name;
-    // uploadFile.mv(`${__dirname}/public/files/${fileName}`, function(err) {
-    //   if (err) {
-    //     return res.status(500).send(err);
-    //   }
-
-    //   res.json({
-    //     file: `public/${req.files.file.name}`
-    //   });
-    // });
-
+    console.log('req file', req);
     const data = {
       id_admin: uuidv4(),
       username: req.body.username,
@@ -44,8 +45,7 @@ module.exports = {
       email: req.body.email,
       nama: req.body.nama,
       jenis_kelamin: req.body.jenis_kelamin,
-      jenis_kelamin: req.body.jenis_kelamin,
-      foto: req.body.foto
+      foto: req.file.path
     };
 
     knex(table)
@@ -66,7 +66,7 @@ module.exports = {
       nama: req.body.nama,
       jenis_kelamin: req.body.jenis_kelamin,
       updated_at: knexDate,
-      foto: req.body.foto
+      foto: req.file.path
     };
     knex(table)
       .where('id_admin', req.params.id_admin)

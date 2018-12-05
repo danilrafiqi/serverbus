@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const morgan = require('morgan');
 
 const po = require('./routes/po');
 const rute = require('./routes/rute');
@@ -15,7 +16,7 @@ const bank = require('./routes/bank');
 const agen = require('./routes/agen');
 const user = require('./routes/user');
 const bus = require('./routes/bus');
-//const kursi = require('./routes/kursi')
+const kursi = require('./routes/kursi');
 
 const transaksi = require('./routes/transaksi');
 const jadwal = require('./routes/jadwal');
@@ -24,12 +25,18 @@ const tiket = require('./routes/tiket');
 // untuk chart
 const chart = require('./routes/chart');
 //untuk pencarian tiket
+<<<<<<< HEAD
 const cariJadwal = require('./routes/cariJadwal');
 
+=======
+// const jadwal = require('./routes/cariJadwal');
+app.use(morgan('dev'));
+>>>>>>> master
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use('/uploads', express.static('uploads'));
 app.use('/po', po);
 app.use('/rute', rute);
 app.use('/kelas', kelas);
@@ -42,7 +49,7 @@ app.use('/bank', bank);
 app.use('/agen', agen);
 app.use('/user', user);
 app.use('/bus', bus);
-//app.use('/kursi', kursi)
+app.use('/kursi', kursi);
 app.use('/transaksi', transaksi);
 app.use('/jadwal', jadwal);
 app.use('/harga', harga);
