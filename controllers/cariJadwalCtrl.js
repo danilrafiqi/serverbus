@@ -4,7 +4,6 @@ const knexDate = knex.fn.now();
 //const uuidv4 = require('uuid/v4');
 
 module.exports = {
-
   detail: (req, res) => {
     knex
       .select(
@@ -22,24 +21,23 @@ module.exports = {
         'bus.jumlah_kursi as jumlah_kursi',
         'bus.tipe_kursi as tipe_kursi',
         'kelas.nama_kelas as nama_kelas'
-        )
+      )
       .from(table)
-      .innerjoin( 'tujuan','harga.id_tujuan','=','tujuan.id_tujuan') 
-      .innerjoin( 'agen','harga.id_agen','=','agen.id_agen') 
-      .innerjoin( 'po','po.id_po','=','agen.id_po') 
-      .innerjoin( 'rute','harga.id_rute','=','rute.id_rute')
-      .innerjoin( 'jadwal','jadwal.id_rute','=','rute.id_rute')
-      .innerjoin( 'bus','jadwal.no_plat','=','bus.no_plat')
-      .innerjoin( 'kelas','bus.id_kelas','=','kelas.id_kelas')
-      .where(
-        'jadwal.tanggal_keberangkatan',req.query.tanggal_keberangkatan,
-        'tujuan.lokasi_awal',req.query.lokasi_awal,
-        'tujuan.lokasi_tujuan',req.query.lokasi_tujuan
-        )
+      .innerJoin('tujuan', 'harga.id_tujuan', '=', 'tujuan.id_tujuan')
+      .innerJoin('agen', 'harga.id_agen', '=', 'agen.id_agen')
+      .innerJoin('po', 'po.id_po', '=', 'agen.id_po')
+      .innerJoin('rute', 'harga.id_rute', '=', 'rute.id_rute')
+      .innerJoin('jadwal', 'jadwal.id_rute', '=', 'rute.id_rute')
+      .innerJoin('bus', 'jadwal.no_plat', '=', 'bus.no_plat')
+      .innerJoin('kelas', 'bus.id_kelas', '=', 'kelas.id_kelas')
+      .where({
+        'jadwal.tanggal_keberangkatan': req.query.tanggal_keberangkatan,
+        'tujuan.lokasi_awal': req.query.lokasi_awal,
+        'tujuan.lokasi_tujuan': req.query.lokasi_tujuan
+      })
       //tambahin where biar tidak bisa serch jadwal yang udah lewat tanggalnya atau di ubah di form input tanggal keberangkatan
       .then(datas => {
         res.send(datas);
       });
-  },
-
+  }
 };

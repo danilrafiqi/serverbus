@@ -25,13 +25,9 @@ const tiket = require('./routes/tiket');
 // untuk chart
 const chart = require('./routes/chart');
 //untuk pencarian tiket
-<<<<<<< HEAD
 const cariJadwal = require('./routes/cariJadwal');
 
-=======
-// const jadwal = require('./routes/cariJadwal');
 app.use(morgan('dev'));
->>>>>>> master
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -56,6 +52,7 @@ app.use('/harga', harga);
 app.use('/tiket', tiket);
 //chart
 app.use('/chart', chart);
+app.use('/carijadwal', cariJadwal);
 
 const port = process.env.PORT || 2018;
 app.listen(port, process.env.IP, () => {
