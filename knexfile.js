@@ -4,16 +4,16 @@ module.exports = {
   development: {
     client: 'mysql',
     connection: {
-      host:'localhost',
-      user:'root',
-      password:'',
-      database:'db_bus'
+      host: 'localhost',
+      user: 'root',
+      password: '',
+      database: 'db_bus'
     },
-    migrations:{
-      directory:__dirname+ '/db/migrations',
+    migrations: {
+      directory: __dirname + '/db/migrations'
     },
-    seeds:{
-      directory:__dirname+ '/db/seeds',
+    seeds: {
+      directory: __dirname + '/db/seeds'
     }
-  },
+  }
 };
