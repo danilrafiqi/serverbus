@@ -1,5 +1,5 @@
 const knex = require('../db/knex');
-const table = 'tiket';
+const table = 'bus';
 const knexDate = knex.fn.now();
 const uuidv4 = require('uuid/v4');
 
@@ -18,7 +18,7 @@ module.exports = {
     knex
       .select()
       .from(table)
-      .where('id_tiket', req.params.id_tiket)
+      .where('id', req.params.id)
       .then(datas => {
         res.send(datas);
       });
@@ -26,15 +26,10 @@ module.exports = {
 
   post: (req, res) => {
     const data = {
-      id_tiket: uuidv4(),
-      no_kursi: req.body.no_kursi,
-      tgl_pemesanan: req.body.tgl_pemesanan,
-      waktu_pemesanan: req.body.waktu_pemesanan,
-      id_harga: req.body.id_harga,
-      id_jadwal: req.body.id_jadwal,
-      id_penumpang: req.body.id_penumpang,
-      updated_at: knexDate,
-      id_transaksi: req.body.id_transaksi
+      id: uuidv4(),
+      plat: req.body.plat,
+      jumlah_kursi: req.body.jumlah_kursi,
+      kelas_id: req.body.kelas_id
     };
 
     knex(table)
@@ -49,19 +44,16 @@ module.exports = {
 
   edit: (req, res) => {
     const data = {
-      no_kursi: req.body.no_kursi,
-      tgl_pemesanan: req.body.tgl_pemesanan,
-      waktu_pemesanan: req.body.waktu_pemesanan,
-      id_harga: req.body.id_harga,
-      id_jadwal: req.body.id_jadwal,
-      id_penumpang: req.body.id_penumpang,
-      id_transaksi: req.body.id_transaksi
+      plat: req.body.plat,
+      jumlah_kursi: req.body.jumlah_kursi,
+      kelas_id: req.body.kelas_id,
+      updated_at: knexDate
     };
     knex(table)
-      .where('id_tiket', req.params.id_tiket)
+      .where('id', req.params.id)
       .update(data)
       .then(datas => {
-        res.send('success update : ' + req.params.id_tiket);
+        res.send('success update : ' + req.params.id);
       })
       .catch(err => {
         res.send('error disini : ' + err);
@@ -70,10 +62,10 @@ module.exports = {
 
   delete: (req, res) => {
     knex(table)
-      .where('id_tiket', req.params.id_tiket)
+      .where('id', req.params.id)
       .del()
       .then(() => {
-        res.send('success delete : ' + req.params.id_tiket);
+        res.send('success delete : ' + req.params.id);
       })
       .catch(err => {
         res.send('error disini : ' + err);

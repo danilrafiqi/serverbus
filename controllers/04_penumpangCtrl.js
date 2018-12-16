@@ -1,5 +1,5 @@
 const knex = require('../db/knex');
-const table = 'kelas';
+const table = 'penumpang';
 const knexDate = knex.fn.now();
 const uuidv4 = require('uuid/v4');
 
@@ -18,7 +18,7 @@ module.exports = {
     knex
       .select()
       .from(table)
-      .where('id_kelas', req.params.id_kelas)
+      .where('id', req.params.id)
       .then(datas => {
         res.send(datas);
       });
@@ -26,10 +26,10 @@ module.exports = {
 
   post: (req, res) => {
     const data = {
-      id_kelas: uuidv4(),
-      nama_kelas: req.body.nama_kelas,
-      deskripsi: req.body.deskripsi,
-      harga: req.body.harga
+      id: uuidv4(),
+      nama: req.body.nama,
+      no_hp: req.body.no_hp,
+      email: req.body.email
     };
 
     knex(table)
@@ -44,16 +44,16 @@ module.exports = {
 
   edit: (req, res) => {
     const data = {
-      nama_kelas: req.body.nama_kelas,
-      deskripsi: req.body.deskripsi,
-      updated_at: knexDate,
-      harga: req.body.harga
+      nama: req.body.nama,
+      no_hp: req.body.no_hp,
+      email: req.body.email,
+      updated_at: knexDate
     };
     knex(table)
-      .where('id_kelas', req.params.id_kelas)
+      .where('id', req.params.id)
       .update(data)
       .then(datas => {
-        res.send('success update : ' + req.params.id_kelas);
+        res.send('success update : ' + req.params.id);
       })
       .catch(err => {
         res.send('error disini : ' + err);
@@ -62,10 +62,10 @@ module.exports = {
 
   delete: (req, res) => {
     knex(table)
-      .where('id_kelas', req.params.id_kelas)
+      .where('id', req.params.id)
       .del()
       .then(() => {
-        res.send('success delete : ' + req.params.id_kelas);
+        res.send('success delete : ' + req.params.id);
       })
       .catch(err => {
         res.send('error disini : ' + err);

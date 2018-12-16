@@ -1,5 +1,5 @@
 const knex = require('../db/knex');
-const table = 'transaksi';
+const table = 'kelas';
 const knexDate = knex.fn.now();
 const uuidv4 = require('uuid/v4');
 
@@ -18,7 +18,7 @@ module.exports = {
     knex
       .select()
       .from(table)
-      .where('id_transaksi', req.params.id_transaksi)
+      .where('id', req.params.id)
       .then(datas => {
         res.send(datas);
       });
@@ -26,14 +26,11 @@ module.exports = {
 
   post: (req, res) => {
     const data = {
-      id_transaksi: uuidv4(),
-      bukti_pembayaran: req.body.bukti_pembayaran,
-      status_transaksi: req.body.status_transaksi,
-      total: req.body.total,
-      tgl_pesan: req.body.tgl_pesan,
-      expired: req.body.expired,
-      updated_at: knexDate,
-      id_pemesan: req.body.id_pemesan
+      id: uuidv4(),
+      kode: req.body.kode,
+      nama: req.body.nama,
+      deskripsi: req.body.deskripsi,
+      po_id: req.body.po_id
     };
 
     knex(table)
@@ -48,18 +45,17 @@ module.exports = {
 
   edit: (req, res) => {
     const data = {
-      bukti_pembayaran: req.body.bukti_pembayaran,
-      status_transaksi: req.body.status_transaksi,
-      total: req.body.total,
-      tgl_pesan: req.body.tgl_pesan,
-      expired: req.body.expired,
-      id_pemesan: req.body.id_pemesan
+      kode: req.body.kode,
+      nama: req.body.nama,
+      deskripsi: req.body.deskripsi,
+      po_id: req.body.po_id,
+      updated_at: knexDate
     };
     knex(table)
-      .where('id_transaksi', req.params.id_transaksi)
+      .where('id', req.params.id)
       .update(data)
       .then(datas => {
-        res.send('success update : ' + req.params.id_transaksi);
+        res.send('success update : ' + req.params.id);
       })
       .catch(err => {
         res.send('error disini : ' + err);
@@ -68,10 +64,10 @@ module.exports = {
 
   delete: (req, res) => {
     knex(table)
-      .where('id_transaksi', req.params.id_transaksi)
+      .where('id', req.params.id)
       .del()
       .then(() => {
-        res.send('success delete : ' + req.params.id_transaksi);
+        res.send('success delete : ' + req.params.id);
       })
       .catch(err => {
         res.send('error disini : ' + err);

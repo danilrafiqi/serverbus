@@ -6,8 +6,7 @@ exports.up = function(knex, Promise) {
       .unique();
     table.string('harga', 20);
     table.string('kursi_tersedia', 2);
-    table.date('tanggal_keberangkatan');
-    table.time('jam_keberangkatan', 6);
+    table.datetime('tanggal_keberangkatan');
     table.uuid('bus_id');
     table
       .foreign('bus_id')

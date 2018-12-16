@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
     table.string('nama', 40);
     table.string('email', 40);
     table.string('no_hp', 14);
-    table.string('lokasi');
+    table.string('alamat');
     table.uuid('po_id');
     table
       .foreign('po_id')

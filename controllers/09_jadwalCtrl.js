@@ -1,5 +1,5 @@
 const knex = require('../db/knex');
-const table = 'harga';
+const table = 'jadwal';
 const knexDate = knex.fn.now();
 const uuidv4 = require('uuid/v4');
 
@@ -8,7 +8,7 @@ module.exports = {
     knex
       .select()
       .from(table)
-      // .orderBy('created_at', 'desc')
+      .orderBy('created_at', 'desc')
       .then(datas => {
         res.send(datas);
       });
@@ -18,7 +18,7 @@ module.exports = {
     knex
       .select()
       .from(table)
-      .where('id_harga', req.params.id_harga)
+      .where('id', req.params.id)
       .then(datas => {
         res.send(datas);
       });
@@ -26,11 +26,12 @@ module.exports = {
 
   post: (req, res) => {
     const data = {
-      id_harga: uuidv4(),
+      id: uuidv4(),
       harga: req.body.harga,
-      id_rute: req.body.id_rute,
-      id_tujuan: req.body.id_tujuan,
-      id_agen: req.body.id_agen
+      kursi_tersedia: req.body.kursi_tersedia,
+      tanggal_keberangkatan: req.body.tanggal_keberangkatan,
+      bus_id: req.body.bus_id,
+      tujuan_id: req.body.tujuan_id
     };
 
     knex(table)
@@ -45,17 +46,18 @@ module.exports = {
 
   edit: (req, res) => {
     const data = {
-      id_rute: req.body.id_rute,
       harga: req.body.harga,
-      id_tujuan: req.body.id_tujuan,
-      updated_at: knexDate,
-      id_agen: req.body.id_agen
+      kursi_tersedia: req.body.kursi_tersedia,
+      tanggal_keberangkatan: req.body.tanggal_keberangkatan,
+      bus_id: req.body.bus_id,
+      tujuan_id: req.body.tujuan_id,
+      updated_at: knexDate
     };
     knex(table)
-      .where('id_harga', req.params.id_harga)
+      .where('id', req.params.id)
       .update(data)
       .then(datas => {
-        res.send('success update : ' + req.params.id_harga);
+        res.send('success update : ' + req.params.id);
       })
       .catch(err => {
         res.send('error disini : ' + err);
@@ -64,10 +66,10 @@ module.exports = {
 
   delete: (req, res) => {
     knex(table)
-      .where('id_harga', req.params.id_harga)
+      .where('id', req.params.id)
       .del()
       .then(() => {
-        res.send('success delete : ' + req.params.id_harga);
+        res.send('success delete : ' + req.params.id);
       })
       .catch(err => {
         res.send('error disini : ' + err);

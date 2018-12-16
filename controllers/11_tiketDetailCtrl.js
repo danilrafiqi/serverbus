@@ -1,7 +1,7 @@
 const knex = require('../db/knex');
-const table = 'bus';
+const table = 'tiket-detail';
 const knexDate = knex.fn.now();
-//const uuidv4 = require('uuid/v4')
+const uuidv4 = require('uuid/v4');
 
 module.exports = {
   all: (req, res) => {
@@ -18,7 +18,7 @@ module.exports = {
     knex
       .select()
       .from(table)
-      .where('no_plat', req.params.no_plat)
+      .where('id', req.params.id)
       .then(datas => {
         res.send(datas);
       });
@@ -26,12 +26,11 @@ module.exports = {
 
   post: (req, res) => {
     const data = {
-      no_plat: req.body.no_plat,
-      status: req.body.status,
-      jumlah_kursi: req.body.jumlah_kursi,
-      tipe_kursi: req.body.tipe_kursi,
-      id_kelas: req.body.id_kelas,
-      id_po: req.body.id_po
+      id: uuidv4(),
+      no_kursi: req.body.no_kursi,
+      pesanan_header_id: req.body.pesanan_header_id,
+      tiket_id: req.body.tiket_id,
+      penumpang_id: req.body.penumpang_id
     };
 
     knex(table)
@@ -46,18 +45,17 @@ module.exports = {
 
   edit: (req, res) => {
     const data = {
-      no_plat: req.body.no_plat,
-      status: req.body.status,
-      jumlah_kursi: req.body.jumlah_kursi,
-      tipe_kursi: req.body.tipe_kursi,
-      updated_at: knexDate,
-      id_kelas: req.body.id_kelas
+      no_kursi: req.body.no_kursi,
+      pesanan_header_id: req.body.pesanan_header_id,
+      tiket_id: req.body.tiket_id,
+      penumpang_id: req.body.penumpang_id,
+      updated_at: knexDate
     };
     knex(table)
-      .where('no_plat', req.params.no_plat)
+      .where('id', req.params.id)
       .update(data)
       .then(datas => {
-        res.send('success update : ' + req.params.no_plat);
+        res.send('success update : ' + req.params.id);
       })
       .catch(err => {
         res.send('error disini : ' + err);
@@ -66,10 +64,10 @@ module.exports = {
 
   delete: (req, res) => {
     knex(table)
-      .where('no_plat', req.params.no_plat)
+      .where('id', req.params.id)
       .del()
       .then(() => {
-        res.send('success delete : ' + req.params.no_plat);
+        res.send('success delete : ' + req.params.id);
       })
       .catch(err => {
         res.send('error disini : ' + err);

@@ -30,7 +30,7 @@ module.exports = {
     knex
       .select()
       .from(table)
-      .where('id_admin', req.params.id_admin)
+      .where('id', req.params.id)
       .then(datas => {
         res.send(datas);
       });
@@ -39,12 +39,14 @@ module.exports = {
   post: (req, res) => {
     console.log('req file', req);
     const data = {
-      id_admin: uuidv4(),
+      id: uuidv4(),
+      kode: req.body.kode,
       username: req.body.username,
       password: req.body.password,
       email: req.body.email,
       nama: req.body.nama,
       jenis_kelamin: req.body.jenis_kelamin,
+      hak_akses: req.body.hak_akses,
       foto: req.file.path
     };
 
@@ -60,19 +62,20 @@ module.exports = {
 
   edit: (req, res) => {
     const data = {
+      kode: req.body.kode,
       username: req.body.username,
       password: req.body.password,
       email: req.body.email,
       nama: req.body.nama,
       jenis_kelamin: req.body.jenis_kelamin,
-      updated_at: knexDate,
+      hak_akses: req.body.hak_akses,
       foto: req.file.path
     };
     knex(table)
-      .where('id_admin', req.params.id_admin)
+      .where('id', req.params.id)
       .update(data)
       .then(datas => {
-        res.send('success update : ' + req.params.id_admin);
+        res.send('success update : ' + req.params.id);
       })
       .catch(err => {
         res.send('error disini : ' + err);
@@ -81,10 +84,10 @@ module.exports = {
 
   delete: (req, res) => {
     knex(table)
-      .where('id_admin', req.params.id_admin)
+      .where('id', req.params.id)
       .del()
       .then(() => {
-        res.send('success delete : ' + req.params.id_admin);
+        res.send('success delete : ' + req.params.id);
       })
       .catch(err => {
         res.send('error disini : ' + err);
