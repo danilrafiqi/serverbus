@@ -4,8 +4,9 @@ exports.up = function(knex, Promise) {
       .uuid('id')
       .primary()
       .unique();
-    table.string('nama');
-    table.string('no_rek');
+    table.string('nama', 20);
+    table.string('no_rek', 20);
+    table.string('atas_nama', 40);
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.timestamp('updated_at').defaultTo(knex.fn.now());
   });
