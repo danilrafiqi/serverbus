@@ -1,19 +1,21 @@
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('po', function(table) {
+  return knex.schema.createTable('bus', function(table) {
     table
       .uuid('id')
       .primary()
       .unique();
-    table.string('kode', 8);
-    table.string('nama', 40);
-    table.string('alamat');
-    table.string('no_hp', 14);
-    table.string('email', 40);
+    table.string('plat', 10);
+    table.string('jumlah_kursi');
+    table.uuid('kelas_id');
+    table
+      .foreign('kelas_id')
+      .references('id')
+      .inTable('kelas');
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.timestamp('updated_at').defaultTo(knex.fn.now());
   });
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('po');
+  return knex.schema.dropTable('bus');
 };

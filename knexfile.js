@@ -7,7 +7,7 @@ module.exports = {
       host: 'localhost',
       user: 'root',
       password: '',
-      database: 'db_bus'
+      database: 'db_busnew'
     },
     migrations: {
       directory: __dirname + '/db/migrations'

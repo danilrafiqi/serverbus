@@ -1,12 +1,14 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('penumpang', function(table) {
     table
-      .uuid('id_penumpang')
+      .uuid('id')
       .primary()
       .unique();
-    table.string('nama');
-    table.string('no_hp');
-    table.string('email');
+    table.string('kode', 12);
+    table.string('nama', 40);
+    table.string('no_hp', 14);
+    table.string('email', 40);
+    table.string('alamat');
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.timestamp('updated_at').defaultTo(knex.fn.now());
   });
