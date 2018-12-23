@@ -13,6 +13,6 @@ router.use('/tujuan', require('./08_tujuan'));
 router.use('/jadwal', require('./09_jadwal'));
 router.use('/tiket-header', require('./10_tiketHeader'));
 router.use('/tiket-detail', require('./11_tiketDetail'));
-router.use('/admin', require('./12_admin'));
+router.use('/user', require('./12_user'));
 
 module.exports = router;

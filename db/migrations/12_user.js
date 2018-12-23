@@ -1,5 +1,5 @@
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('admin', function(table) {
+  return knex.schema.createTable('user', function(table) {
     table
       .uuid('id')
       .primary()
@@ -12,11 +12,16 @@ exports.up = function(knex, Promise) {
     table.enu('jenis_kelamin', ['l', 'p']);
     table.enu('hak_akses', ['superadmin', 'admin_po', 'agen']);
     table.string('foto');
+    table.uuid('po_id').nullable();
+    table
+      .foreign('po_id')
+      .references('id')
+      .inTable('po');
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.timestamp('updated_at').defaultTo(knex.fn.now());
   });
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('admin');
+  return knex.schema.dropTable('user');
 };

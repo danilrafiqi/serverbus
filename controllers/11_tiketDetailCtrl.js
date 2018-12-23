@@ -1,14 +1,16 @@
 const knex = require('../db/knex');
-const table = 'tiket-detail';
+const table = 'tiket_detail';
 const knexDate = knex.fn.now();
 const uuidv4 = require('uuid/v4');
 
 module.exports = {
   all: (req, res) => {
     knex
-      .select()
+      .select('tiket_detail.*', 'penumpang.nama as penumpang')
       .from(table)
-      .orderBy('created_at', 'desc')
+
+      .innerJoin('penumpang', 'tiket_detail.penumpang_id', '=', 'penumpang.id')
+      .orderBy('tiket_detail.created_at', 'desc')
       .then(datas => {
         res.send(datas);
       });

@@ -1,12 +1,14 @@
 const knex = require('../db/knex');
-const table = 'admin';
+const table = 'user';
 const knexDate = knex.fn.now();
 const uuidv4 = require('uuid/v4');
 const multer = require('multer');
+const crypto = require('crypto');
+const secret = 'drcreative';
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './uploads');
+    cb(null, './public/uploads');
   },
   filename: (req, file, cb) => {
     cb(null, new Date().toISOString() + file.originalname);
@@ -18,9 +20,10 @@ const upload = multer({ storage: storage });
 module.exports = {
   all: (req, res) => {
     knex
-      .select()
+      .select('user.*', 'po.nama as po')
       .from(table)
-      .orderBy('created_at', 'desc')
+      .innerJoin('po', 'user.po_id', '=', 'po.id')
+      .orderBy('user.created_at', 'desc')
       .then(datas => {
         res.send(datas);
       });
@@ -37,16 +40,22 @@ module.exports = {
   },
   // upload: (req, res) => {},
   post: (req, res) => {
+    const password = crypto
+      .createHmac('sha512', secret)
+      .update(req.body.password)
+      .digest('hex');
+
     console.log('req file', req);
     const data = {
       id: uuidv4(),
       kode: req.body.kode,
       username: req.body.username,
-      password: req.body.password,
+      password: password,
       email: req.body.email,
       nama: req.body.nama,
       jenis_kelamin: req.body.jenis_kelamin,
       hak_akses: req.body.hak_akses,
+      po_id: req.body.po_id,
       foto: req.file.path
     };
 
@@ -69,7 +78,9 @@ module.exports = {
       nama: req.body.nama,
       jenis_kelamin: req.body.jenis_kelamin,
       hak_akses: req.body.hak_akses,
-      foto: req.file.path
+      foto: req.file.path,
+      po_id: req.body.po_id,
+      updated_at: knexDate
     };
     knex(table)
       .where('id', req.params.id)

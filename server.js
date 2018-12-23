@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 const route = require('./routes/index');
 app.use(route);
+app.use('/public', express.static('public'));
 
 const port = process.env.PORT || 2018;
 app.listen(port, process.env.IP, () => {

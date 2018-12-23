@@ -6,9 +6,10 @@ const uuidv4 = require('uuid/v4');
 module.exports = {
   all: (req, res) => {
     knex
-      .select()
+      .select('bus.*', 'kelas.nama as kelas')
       .from(table)
-      .orderBy('created_at', 'desc')
+      .innerJoin('kelas', 'bus.kelas_id', '=', 'kelas.id')
+      .orderBy('bus.created_at', 'desc')
       .then(datas => {
         res.send(datas);
       });

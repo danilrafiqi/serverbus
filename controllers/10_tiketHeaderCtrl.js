@@ -1,5 +1,5 @@
 const knex = require('../db/knex');
-const table = 'tiket-header';
+const table = 'tiket_header';
 const knexDate = knex.fn.now();
 const uuidv4 = require('uuid/v4');
 
