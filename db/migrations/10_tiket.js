@@ -13,6 +13,11 @@ exports.up = function(knex, Promise) {
       .foreign('penumpang_id')
       .references('id')
       .inTable('penumpang');
+    table.uuid('jadwal_id');
+    table
+      .foreign('jadwal_id')
+      .references('id')
+      .inTable('jadwal');
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.timestamp('updated_at').defaultTo(knex.fn.now());
   });
