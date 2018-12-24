@@ -1,15 +1,13 @@
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('tiket_detail', function(table) {
+  return knex.schema.createTable('tiket', function(table) {
     table
       .uuid('id')
       .primary()
       .unique();
+    table.datetime('waktu');
+    table.datetime('expire');
     table.string('no_kursi', 2);
-    table.uuid('tiket_header_id');
-    table
-      .foreign('tiket_header_id')
-      .references('id')
-      .inTable('tiket_header');
+    table.enu('status', ['dipesan', 'lunas', 'kosong']);
     table.uuid('penumpang_id');
     table
       .foreign('penumpang_id')
@@ -21,5 +19,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('tiket_detail');
+  return knex.schema.dropTable('tiket');
 };

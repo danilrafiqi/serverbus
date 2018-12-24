@@ -32,8 +32,8 @@ module.exports = {
       .innerJoin('kelas', 'bus.id_kelas', '=', 'kelas.id_kelas')
       .where({
         'jadwal.tanggal_keberangkatan': req.query.tanggal_keberangkatan,
-        'tujuan.lokasi_awal': req.query.lokasi_awal,
-        'tujuan.lokasi_tujuan': req.query.lokasi_tujuan
+        'tujuan.pemberangkatan': req.query.pemberangkatan,
+        'tujuan.pemberhentian': req.query.pemberhentian
       })
       //tambahin where biar tidak bisa serch jadwal yang udah lewat tanggalnya atau di ubah di form input tanggal keberangkatan
       .then(datas => {

@@ -6,6 +6,11 @@ exports.up = function(knex, Promise) {
       .unique();
     table.string('kode', 8);
     table.string('deskripsi');
+    table.uuid('po_id');
+    table
+      .foreign('po_id')
+      .references('id')
+      .inTable('po');
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.timestamp('updated_at').defaultTo(knex.fn.now());
   });

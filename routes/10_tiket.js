@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const tiketCtrl = require('../controllers/10_tiketHeaderCtrl');
+const tiketCtrl = require('../controllers/10_tiketCtrl');
 
 router.get('/', tiketCtrl.all);
 router.get('/:id', tiketCtrl.detail);

@@ -29,7 +29,9 @@ module.exports = {
       id: uuidv4(),
       waktu: req.body.waktu,
       expire: req.body.expire,
-      status: req.body.status
+      no_kursi: req.body.no_kursi,
+      status: req.body.status,
+      penumpang_id: req.body.penumpang_id
     };
 
     knex(table)
@@ -46,7 +48,9 @@ module.exports = {
     const data = {
       waktu: req.body.waktu,
       expire: req.body.expire,
+      no_kursi: req.body.no_kursi,
       status: req.body.status,
+      penumpang_id: req.body.penumpang_id,
       updated_at: knexDate
     };
     knex(table)
