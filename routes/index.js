@@ -13,5 +13,6 @@ router.use('/tujuan', require('./08_tujuan'));
 router.use('/jadwal', require('./09_jadwal'));
 router.use('/tiket', require('./10_tiket'));
 router.use('/user', require('./12_user'));
+router.use('/cari', require('./cari'));
 
 module.exports = router;
