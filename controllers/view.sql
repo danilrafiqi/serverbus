@@ -1,6 +1,7 @@
 --query for create view
 CREATE VIEW AS carijadwal
 SELECT 
+jadwal.id as id,
 jadwal.harga as harga,
 jadwal.kursi_tersedia as kursi_tersedia,
 jadwal.tanggal_keberangkatan as tanggal_keberangkatan, 
