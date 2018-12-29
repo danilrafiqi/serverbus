@@ -1,5 +1,5 @@
 --query for create view
-CREATE VIEW AS carijadwal
+CREATE VIEW carijadwal AS 
 SELECT 
 jadwal.id as id,
 jadwal.harga as harga,
@@ -25,3 +25,17 @@ INNER join rute on rute.id = tujuan.rute_id
 --searching tiket
 SELECT * FROM `carijadwal` WHERE tanggal_keberangkatan like '2018-12-13%' and pemberangkatan like 'Bandar Lampung' and pemberhentian like 'Jakarta' and kursi_tersedia NOT LIKE '0'
 
+
+
+--cari kursi
+CREATE VIEW carikursi AS 
+SELECT 
+tiket.id as id,  
+tiket.jadwal_id as jadwal,  
+tiket.no_kursi as no_kursi,  
+jadwal.tanggal_keberangkatan as tanggal_keberangkatan,  
+bus.jumlah_kursi as jumlah_kursi 
+
+FROM `tiket`
+INNER JOIN jadwal on jadwal.id = tiket.jadwal_id
+INNER JOIN bus on bus.id = jadwal.bus_id
