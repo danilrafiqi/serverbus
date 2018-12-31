@@ -14,5 +14,6 @@ router.use('/jadwal', require('./09_jadwal'));
 router.use('/tiket', require('./10_tiket'));
 router.use('/user', require('./12_user'));
 router.use('/cari', require('./cari'));
+router.use('/pesan', require('./pesan'));
 
 module.exports = router;

@@ -7,6 +7,7 @@ exports.up = function(knex, Promise) {
     table.datetime('waktu');
     table.datetime('expire');
     table.string('no_kursi', 2);
+    table.string('total', 10);
     table.enu('status', ['dipesan', 'lunas', 'kosong']);
     table.uuid('penumpang_id');
     table
