@@ -5,4 +5,5 @@ const cari = require('../controllers/cariCtrl');
 router.get('/kabupaten', cari.kabupaten);
 router.get('/jadwal', cari.jadwal);
 router.get('/kursi/:jadwal/:tanggal_keberangkatan', cari.kursi);
+router.get('/jadwal/:id', cari.jadwalById);
 module.exports = router;

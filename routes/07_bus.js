@@ -7,5 +7,6 @@ router.get('/:id', busCtrl.detail);
 router.post('/', busCtrl.post);
 router.put('/:id', busCtrl.edit);
 router.delete('/:id', busCtrl.delete);
+router.get('/plat/:plat', busCtrl.plat);
 
 module.exports = router;

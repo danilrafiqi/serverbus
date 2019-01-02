@@ -47,5 +47,14 @@ module.exports = {
       .then(datas => {
         res.send(datas);
       });
+  },
+  jadwalById: (req, res) => {
+    knex
+      .select()
+      .from('carijadwal')
+      .where('id', 'like', `${req.params.id}`)
+      .then(datas => {
+        res.send(datas);
+      });
   }
 };

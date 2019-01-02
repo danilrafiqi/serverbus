@@ -71,5 +71,14 @@ module.exports = {
       .catch(err => {
         res.send('error disini : ' + err);
       });
+  },
+  plat: (req, res) => {
+    knex
+      .select()
+      .from(table)
+      .where('plat', req.params.plat)
+      .then(datas => {
+        res.send(datas);
+      });
   }
 };

@@ -22,12 +22,13 @@ module.exports = {
   },
   tiket: (req, res) => {
     const data = {
-      id: uuidv4(),
+      id: req.body.book_id,
       waktu: knexDate,
       expire: knexDate,
       no_kursi: req.body.no_kursi,
       status: 'dipesan',
-      penumpang_id: req.body.id,
+      total: req.body.total,
+      penumpang_id: req.body.penumpang_id,
       jadwal_id: req.body.jadwal_id
     };
 

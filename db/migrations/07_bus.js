@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
       .uuid('id')
       .primary()
       .unique();
-    table.string('plat', 10);
+    table.string('plat', 10).unique();
     table.string('jumlah_kursi');
     table.uuid('kelas_id');
     table
