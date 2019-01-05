@@ -41,6 +41,7 @@ module.exports = {
       nama_pengirim: req.body.nama_pengirim,
       nama_bank_pengirim: req.body.nama_bank_pengirim,
       jumlah_transfer: req.body.jumlah_transfer,
+      tiket_id: req.body.tiket_id,
       foto: req.file.path
     };
 

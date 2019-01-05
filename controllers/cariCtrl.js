@@ -56,5 +56,14 @@ module.exports = {
       .then(datas => {
         res.send(datas);
       });
+  },
+  tiket: (req, res) => {
+    knex
+      .select()
+      .from('cektiket')
+      .where('book_id', 'like', `${req.params.book_id}`)
+      .then(datas => {
+        res.send(datas);
+      });
   }
 };

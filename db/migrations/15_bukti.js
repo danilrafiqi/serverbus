@@ -9,6 +9,11 @@ exports.up = function(knex, Promise) {
     table.string('nama_bank_pengirim');
     table.string('jumlah_transfer');
     table.timestamp('created_at').defaultTo(knex.fn.now());
+    table.uuid('tiket_id');
+    table
+      .foreign('tiket_id')
+      .references('id')
+      .inTable('tiket');
   });
 };
 
