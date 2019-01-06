@@ -16,5 +16,7 @@ router.use('/user', require('./12_user'));
 router.use('/cari', require('./cari'));
 router.use('/pesan', require('./pesan'));
 router.use('/bukti', require('./14_bukti'));
+router.use('/users', require('./11_login'));
+router.use('/auth', require('./auth'));
 
 module.exports = router;
