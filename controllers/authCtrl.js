@@ -1,5 +1,5 @@
 const knex = require('../db/knex');
-const table = 'login';
+const table = 'v_login';
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const secret = 'drcreative';
@@ -21,7 +21,8 @@ module.exports = {
           {
             email: datas[0].email,
             username: datas[0].username,
-            hak_akses: datas[0].hak_akses
+            hak_akses: datas[0].hak_akses,
+            po: datas[0].po
           },
           'bismillah',
           {

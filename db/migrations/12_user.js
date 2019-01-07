@@ -8,10 +8,10 @@ exports.up = function(knex, Promise) {
     table.string('nama', 40);
     table.enu('jenis_kelamin', ['l', 'p']);
     table.string('foto');
-    table.uuid('login').nullable();
+    table.string('email');
     table
-      .foreign('login')
-      .references('username')
+      .foreign('email')
+      .references('email')
       .inTable('login');
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.timestamp('updated_at').defaultTo(knex.fn.now());

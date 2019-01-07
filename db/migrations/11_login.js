@@ -1,8 +1,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('login', function(table) {
-    table.string('username', 40).primary();
+    table.string('email').primary();
     table.string('password');
-    table.string('email').unique();
     table.enu('hak_akses', [
       'superadmin',
       'manager',

@@ -27,7 +27,7 @@ module.exports = {
     knex
       .select()
       .from(table)
-      .where('username', req.body.username)
+      .where('email', req.body.email)
       .then(datas => {
         if (datas.length == 0) {
           const password = crypto
@@ -37,8 +37,6 @@ module.exports = {
           console.log('aa', password);
 
           const data = {
-            // id: uuidv4(),
-            username: req.body.username,
             password: password,
             email: req.body.email,
             hak_akses: req.body.hak_akses

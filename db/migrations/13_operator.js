@@ -13,10 +13,10 @@ exports.up = function(knex, Promise) {
       .foreign('po_id')
       .references('id')
       .inTable('po');
-    table.uuid('login').nullable();
+    table.string('email');
     table
-      .foreign('login')
-      .references('username')
+      .foreign('email')
+      .references('email')
       .inTable('login');
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.timestamp('updated_at').defaultTo(knex.fn.now());

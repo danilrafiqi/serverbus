@@ -67,3 +67,28 @@ INNER JOIN bus on bus.id = jadwal.bus_id
 INNER JOIN kelas on kelas.id = bus.kelas_id
 INNER JOIN po on po.id = kelas.po_id
 INNER JOIN rute on rute.id = tujuan.rute_id
+
+
+CREATE VIEW v_login AS
+(SELECT 
+user.nama as nama, 
+login.email as email, 
+login.password as password, 
+login.hak_akses as hak_akses, 
+'null' as po 
+
+FROM user 
+INNER JOIN login ON login.email = user.email )
+
+UNION
+
+(SELECT 
+operator.nama as nama, 
+login.email as email, 
+login.password as password, 
+login.hak_akses as hak_akses, 
+operator.po_id as po 
+
+FROM operator 
+INNER JOIN login ON login.email = operator.email)
+
