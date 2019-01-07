@@ -23,5 +23,15 @@ module.exports = {
       .then(data => {
         res.send(data);
       });
+  },
+  totalPendapatanByPo: (req, res) => {
+    knex('cektiket')
+      .select('po_nama')
+      .sum('harga as total')
+      .groupBy('po_nama')
+      .then(data => {
+        res.send(data);
+      });
+    // SELECT SUM(harga) AS total, po_nama FROM cektiket GROUP BY po_nama
   }
 };
