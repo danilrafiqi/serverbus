@@ -69,6 +69,7 @@ INNER JOIN po on po.id = kelas.po_id
 INNER JOIN rute on rute.id = tujuan.rute_id
 
 
+## untuk login
 CREATE VIEW v_login AS
 (SELECT 
 user.nama as nama, 
@@ -92,3 +93,10 @@ operator.po_id as po
 FROM operator 
 INNER JOIN login ON login.email = operator.email)
 
+## untuk total grup by po
+SELECT SUM(harga) AS total, po_nama FROM cektiket GROUP BY po_nama
+
+## untuk total by bulan
+SELECT SUM(harga) AS total, MONTHNAME( tanggal_keberangkatan) AS bulan FROM cektiket GROUP BY bulan
+
+## 

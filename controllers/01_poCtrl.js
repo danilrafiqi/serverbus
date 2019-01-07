@@ -89,5 +89,13 @@ module.exports = {
           message: err
         });
       });
+  },
+  total: (req, res) => {
+    knex(table)
+      .count('id as total_po')
+      .then(data => {
+        console.log('data', data);
+        res.send(data);
+      });
   }
 };
