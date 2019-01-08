@@ -29,9 +29,32 @@ module.exports = {
       .select('po_nama')
       .sum('harga as total')
       .groupBy('po_nama')
+      .where('status', 'lunas')
       .then(data => {
         res.send(data);
       });
-    // SELECT SUM(harga) AS total, po_nama FROM cektiket GROUP BY po_nama
+  },
+  totalPendapatanByBulan: (req, res) => {
+    // SELECT SUM(harga) AS total, MONTHNAME( tanggal_keberangkatan) AS bulan FROM cektiket GROUP BY bulan
+    knex('cektiket')
+      .select(
+        knex.raw(
+          'SUM(harga) AS total, MONTHNAME( tanggal_keberangkatan) as bulan'
+        )
+      )
+      .sum('harga as total')
+      .groupBy('bulan')
+      .where('status', 'lunas')
+      .then(data => {
+        res.send(data);
+      });
+
+    // knex('cektiket')
+    //   .select('tanggal_keberangkatan as bulan')
+    //   .sum('harga as total')
+    //   .groupBy('bulan')
+    //   .then(data => {
+    //     res.send(data);
+    //   });
   }
 };
