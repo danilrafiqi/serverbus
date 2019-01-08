@@ -57,6 +57,7 @@ tujuan.pemberhentian as pemberhentian,
 bus.plat as plat,
 kelas.deskripsi as kelas_deskripsi,
 kelas.nama as kelas_nama,
+kelas.po_id as po_id,
 po.nama as po_nama,
 rute.deskripsi as rute_deskripsi
 FROM `tiket` 

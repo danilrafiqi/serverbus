@@ -19,5 +19,6 @@ router.use('/bukti', require('./14_bukti'));
 router.use('/users', require('./11_login'));
 router.use('/auth', require('./auth'));
 router.use('/manager', require('./dashboard.manager'));
+router.use('/manager-po', require('./dashboard.manager.po'));
 
 module.exports = router;
