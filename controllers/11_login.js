@@ -14,11 +14,28 @@ module.exports = {
         res.send(datas);
       });
   },
+  allWithView: (req, res) => {
+    knex
+      .select()
+      .from('v_login')
+      .then(datas => {
+        res.send(datas);
+      });
+  },
   detail: (req, res) => {
     knex
       .select()
       .from(table)
       .where('id', req.params.id)
+      .then(datas => {
+        res.send(datas);
+      });
+  },
+  getProfile: (req, res) => {
+    knex
+      .select()
+      .from('v_profile')
+      .where('email', req.params.email)
       .then(datas => {
         res.send(datas);
       });
@@ -41,7 +58,8 @@ module.exports = {
             email: req.body.email,
             hak_akses: req.body.hak_akses
           };
-
+          console.log('iki popo', datas);
+          console.log('data', req.body);
           knex(table)
             .insert(data)
             .then(() => {
@@ -53,31 +71,44 @@ module.exports = {
         } else {
           // console.log('muh');
           return res.send('user found');
+          console.log('gagal');
         }
       });
   },
 
-  edit: (req, res) => {
-    const data = {
-      kode: req.body.kode,
-      username: req.body.username,
-      password: req.body.password,
-      email: req.body.email,
-      nama: req.body.nama,
-      jenis_kelamin: req.body.jenis_kelamin,
-      hak_akses: req.body.hak_akses,
-      foto: req.file.path,
-      po_id: req.body.po_id,
-      updated_at: knexDate
-    };
-    knex(table)
-      .where('id', req.params.id)
-      .update(data)
+  updatePassword: (req, res) => {
+    const password_lama = crypto
+      .createHmac('sha256', secret)
+      .update(req.body.password_lama)
+      .digest('hex');
+
+    knex
+      .select()
+      .from(table)
+      .where('password', password_lama)
       .then(datas => {
-        res.send('success update : ' + req.params.id);
-      })
-      .catch(err => {
-        res.send('error disini : ' + err);
+        if (datas.length == 0) {
+          return res.send({ message: 'notvalid' });
+        } else {
+          const password_baru = crypto
+            .createHmac('sha256', secret)
+            .update(req.body.password_baru)
+            .digest('hex');
+
+          const data = {
+            password: password_baru
+          };
+
+          knex(table)
+            .where('email', req.params.email)
+            .update(data)
+            .then(datas => {
+              res.send({ message: 'success' });
+            })
+            .catch(err => {
+              res.send('error disini : ' + err);
+            });
+        }
       });
   },
 

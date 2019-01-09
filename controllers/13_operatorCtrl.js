@@ -40,23 +40,32 @@ module.exports = {
   },
   // upload: (req, res) => {},
   post: (req, res) => {
-    console.log('user ctrl', req.body);
+    const password = crypto
+      .createHmac('sha512', secret)
+      .update(req.body.password)
+      .digest('hex');
+
+    console.log('req file', req);
     const data = {
+      id: uuidv4(),
+      kode: req.body.kode,
+      username: req.body.username,
+      password: password,
       email: req.body.email,
       nama: req.body.nama,
       jenis_kelamin: req.body.jenis_kelamin,
-      foto: 'default.jpg'
+      hak_akses: req.body.hak_akses,
+      po_id: req.body.po_id,
+      foto: req.file.path
     };
 
     knex(table)
       .insert(data)
       .then(datas => {
         res.send('success');
-        console.log('berhasil');
       })
       .catch(err => {
         res.send('error disini : ' + err);
-        console.log('gak berhasil', err);
       });
   },
 
@@ -83,22 +92,7 @@ module.exports = {
         res.send('error disini : ' + err);
       });
   },
-  editByEmail: (req, res) => {
-    const data = {
-      nama: req.body.nama,
-      jenis_kelamin: req.body.jenis_kelamin,
-      updated_at: knexDate
-    };
-    knex(table)
-      .where('email', req.params.email)
-      .update(data)
-      .then(datas => {
-        res.send({ message: 'success' });
-      })
-      .catch(err => {
-        res.send('error disini : ' + err);
-      });
-  },
+
   delete: (req, res) => {
     knex(table)
       .where('id', req.params.id)

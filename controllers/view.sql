@@ -94,6 +94,9 @@ operator.po_id as po
 FROM operator 
 INNER JOIN login ON login.email = operator.email)
 
+##end
+
+
 ## untuk total grup by po
 SELECT SUM(harga) AS total, po_nama FROM cektiket GROUP BY po_nama
 
@@ -101,3 +104,33 @@ SELECT SUM(harga) AS total, po_nama FROM cektiket GROUP BY po_nama
 SELECT SUM(harga) AS total, MONTHNAME( tanggal_keberangkatan) AS bulan FROM cektiket GROUP BY bulan
 
 ## 
+
+
+##profile
+CREATE VIEW v_profile AS 
+(SELECT 
+user.nama as nama, 
+user.jenis_kelamin as jenis_kelamin, 
+user.foto as foto, 
+login.email as email, 
+login.hak_akses as hak_akses, 
+'null' as po 
+
+FROM user 
+INNER JOIN login ON login.email = user.email )
+
+UNION
+
+(SELECT 
+operator.nama as nama, 
+operator.jenis_kelamin as jenis_kelamin, 
+operator.foto as foto, 
+login.email as email, 
+login.hak_akses as hak_akses, 
+operator.po_id as po 
+
+FROM operator 
+INNER JOIN login ON login.email = operator.email)
+
+
+##endprofile
