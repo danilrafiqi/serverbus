@@ -15,6 +15,18 @@ module.exports = {
       });
   },
 
+  allByPo: (req, res) => {
+    knex
+      .select('agen.*', 'po.nama as po')
+      .from(table)
+      .innerJoin('po', 'agen.po_id', '=', 'po.id')
+      .orderBy('agen.created_at', 'desc')
+      .where('po_id', req.params.po_id)
+      .then(datas => {
+        res.send(datas);
+      });
+  },
+
   detail: (req, res) => {
     knex
       .select()
@@ -27,7 +39,6 @@ module.exports = {
   post: (req, res) => {
     const data = {
       id: uuidv4(),
-      kode: req.body.kode,
       nama: req.body.nama,
       email: req.body.email,
       no_hp: req.body.no_hp,
