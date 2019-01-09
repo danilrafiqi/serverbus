@@ -9,6 +9,6 @@ router.get('/profile/:email', loginCtrl.getProfile);
 router.post('/', loginCtrl.post);
 router.put('/password/:email', loginCtrl.updatePassword);
 // router.put('/:email', loginCtrl.edit);
-// router.delete('/:id', loginCtrl.delete);
+router.delete('/:email', loginCtrl.delete);
 
 module.exports = router;

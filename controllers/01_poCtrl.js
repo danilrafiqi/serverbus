@@ -79,10 +79,7 @@ module.exports = {
       .where('id', req.params.id)
       .del()
       .then(() => {
-        res.status(200).send({
-          message: 'success delete',
-          id: req.params.id
-        });
+        res.send({ message: 'success' });
       })
       .catch(err => {
         res.send({

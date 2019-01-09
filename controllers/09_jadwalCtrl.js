@@ -76,7 +76,7 @@ module.exports = {
       .where('id', req.params.id)
       .del()
       .then(() => {
-        res.send('success delete : ' + req.params.id);
+        res.send({ message: 'success' });
       })
       .catch(err => {
         res.send('error disini : ' + err);

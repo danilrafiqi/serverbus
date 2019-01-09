@@ -114,13 +114,13 @@ module.exports = {
 
   delete: (req, res) => {
     knex(table)
-      .where('id', req.params.id)
+      .where('email', req.params.email)
       .del()
-      .then(() => {
-        res.send('success delete : ' + req.params.id);
+      .then(result => {
+        res.send({ message: 'success' });
       })
       .catch(err => {
-        res.send('error disini : ' + err);
+        res.send({ message: 'failed' });
       });
   }
 };
