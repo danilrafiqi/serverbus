@@ -15,6 +15,18 @@ module.exports = {
       });
   },
 
+  allByPo: (req, res) => {
+    knex
+      .select('kelas.*', 'po.nama as po')
+      .from(table)
+      .innerJoin('po', 'kelas.po_id', '=', 'po.id')
+      .orderBy('kelas.created_at', 'desc')
+      .where('po_id', req.params.po_id)
+      .then(datas => {
+        res.send(datas);
+      });
+  },
+
   detail: (req, res) => {
     knex
       .select()
@@ -28,7 +40,6 @@ module.exports = {
   post: (req, res) => {
     const data = {
       id: uuidv4(),
-      kode: req.body.kode,
       nama: req.body.nama,
       deskripsi: req.body.deskripsi,
       po_id: req.body.po_id
@@ -46,7 +57,6 @@ module.exports = {
 
   edit: (req, res) => {
     const data = {
-      kode: req.body.kode,
       nama: req.body.nama,
       deskripsi: req.body.deskripsi,
       po_id: req.body.po_id,
