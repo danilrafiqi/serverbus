@@ -26,9 +26,12 @@ module.exports = {
     knex
       .select()
       .from(table)
-      .where('id', req.params.id)
+      .where('email', req.params.email)
       .then(datas => {
         res.send(datas);
+      })
+      .catch(err => {
+        res.send({ message: err });
       });
   },
   getProfile: (req, res) => {
@@ -76,6 +79,22 @@ module.exports = {
       });
   },
 
+  edit: (req, res) => {
+    const data = {
+      hak_akses: req.body.hak_akses,
+      updated_at: knexDate
+    };
+    knex(table)
+      .where('email', req.params.email)
+      .update(data)
+      .then(datas => {
+        res.send({ message: 'success' });
+      })
+      .catch(err => {
+        res.send('error disini : ' + err);
+      });
+  },
+
   updatePassword: (req, res) => {
     const password_lama = crypto
       .createHmac('sha256', secret)
@@ -109,6 +128,27 @@ module.exports = {
               res.send('error disini : ' + err);
             });
         }
+      });
+  },
+
+  newPassword: (req, res) => {
+    const password_baru = crypto
+      .createHmac('sha256', secret)
+      .update(req.body.password_baru)
+      .digest('hex');
+
+    const data = {
+      password: password_baru
+    };
+
+    knex(table)
+      .where('email', req.params.email)
+      .update(data)
+      .then(datas => {
+        res.send({ message: 'success' });
+      })
+      .catch(err => {
+        res.send({ message: 'failed' });
       });
   },
 

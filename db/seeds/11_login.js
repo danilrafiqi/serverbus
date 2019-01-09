@@ -9,15 +9,23 @@ exports.seed = function(knex, Promise) {
       return knex('login').insert([
         {
           email: 'gede@gmail.com',
-          password: '123456'
+          password:
+            '8e3ecf2e6beb1dfb08c9fa612792d4fbf4558301719ef1a17ff4558295d96faa'
         },
         {
-          email: 'bellamifta289@gmail.com',
-          password: '123456'
+          email: 'deni@gmail.com',
+          password:
+            '8e3ecf2e6beb1dfb08c9fa612792d4fbf4558301719ef1a17ff4558295d96faa'
         },
         {
-          email: 'dannil@gmail.com',
-          password: '12345'
+          email: 'bellamiftha280@gmail.com',
+          password:
+            '8e3ecf2e6beb1dfb08c9fa612792d4fbf4558301719ef1a17ff4558295d96faa'
+        },
+        {
+          email: 'danil.rafiqi@gmail.com',
+          password:
+            '8e3ecf2e6beb1dfb08c9fa612792d4fbf4558301719ef1a17ff4558295d96faa'
         }
       ]);
     });

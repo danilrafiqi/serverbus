@@ -1,5 +1,5 @@
 const knex = require('../db/knex');
-const table = 'user';
+const table = 'operator';
 const knexDate = knex.fn.now();
 const uuidv4 = require('uuid/v4');
 const multer = require('multer');
@@ -20,10 +20,9 @@ const upload = multer({ storage: storage });
 module.exports = {
   all: (req, res) => {
     knex
-      .select('user.*', 'po.nama as po')
+      .select()
       .from(table)
-      .innerJoin('po', 'user.po_id', '=', 'po.id')
-      .orderBy('user.created_at', 'desc')
+      .orderBy('created_at', 'desc')
       .then(datas => {
         res.send(datas);
       });

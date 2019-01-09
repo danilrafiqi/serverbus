@@ -20,10 +20,9 @@ const upload = multer({ storage: storage });
 module.exports = {
   all: (req, res) => {
     knex
-      .select('user.*', 'po.nama as po')
+      .select()
       .from(table)
-      .innerJoin('po', 'user.po_id', '=', 'po.id')
-      .orderBy('user.created_at', 'desc')
+      .orderBy('created_at', 'desc')
       .then(datas => {
         res.send(datas);
       });
@@ -40,8 +39,8 @@ module.exports = {
   },
   // upload: (req, res) => {},
   post: (req, res) => {
-    console.log('user ctrl', req.body);
     const data = {
+      id: uuidv4(),
       email: req.body.email,
       nama: req.body.nama,
       jenis_kelamin: req.body.jenis_kelamin,
@@ -62,22 +61,15 @@ module.exports = {
 
   edit: (req, res) => {
     const data = {
-      kode: req.body.kode,
-      username: req.body.username,
-      password: req.body.password,
-      email: req.body.email,
       nama: req.body.nama,
       jenis_kelamin: req.body.jenis_kelamin,
-      hak_akses: req.body.hak_akses,
-      foto: req.file.path,
-      po_id: req.body.po_id,
       updated_at: knexDate
     };
     knex(table)
       .where('id', req.params.id)
       .update(data)
-      .then(datas => {
-        res.send('success update : ' + req.params.id);
+      .then(() => {
+        res.send({ message: 'success' });
       })
       .catch(err => {
         res.send('error disini : ' + err);
