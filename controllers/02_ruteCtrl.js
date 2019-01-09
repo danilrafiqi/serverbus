@@ -14,6 +14,17 @@ module.exports = {
       });
   },
 
+  allByPo: (req, res) => {
+    knex
+      .select()
+      .from(table)
+      .orderBy('created_at', 'desc')
+      .where('po_id', req.params.po_id)
+      .then(datas => {
+        res.send(datas);
+      });
+  },
+
   detail: (req, res) => {
     knex
       .select()
@@ -27,7 +38,7 @@ module.exports = {
   post: (req, res) => {
     const data = {
       id: uuidv4(),
-      kode: req.body.kode,
+      po_id: req.body.po_id,
       deskripsi: req.body.deskripsi
     };
 
@@ -43,7 +54,7 @@ module.exports = {
 
   edit: (req, res) => {
     const data = {
-      kode: req.body.kode,
+      po_id: req.body.po_id,
       deskripsi: req.body.deskripsi,
       updated_at: knexDate
     };

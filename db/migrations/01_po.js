@@ -4,7 +4,6 @@ exports.up = function(knex, Promise) {
       .uuid('id')
       .primary()
       .unique();
-    table.string('kode', 8);
     table.string('nama', 40);
     table.string('alamat');
     table.string('no_hp', 14);
