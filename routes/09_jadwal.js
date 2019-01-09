@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const jadwalCtrl = require('../controllers/09_jadwalCtrl');
 
+router.get('/:po_id/bypo', jadwalCtrl.allByPo);
 router.get('/', jadwalCtrl.all);
 router.get('/:id', jadwalCtrl.detail);
 router.post('/', jadwalCtrl.post);

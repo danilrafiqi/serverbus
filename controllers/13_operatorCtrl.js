@@ -27,6 +27,16 @@ module.exports = {
         res.send(datas);
       });
   },
+  allByPo: (req, res) => {
+    knex
+      .select()
+      .from(table)
+      .orderBy('created_at', 'desc')
+      .where('po_id', req.params.po_id)
+      .then(datas => {
+        res.send(datas);
+      });
+  },
   unggah: upload.single('foto'),
   detail: (req, res) => {
     knex
@@ -37,61 +47,62 @@ module.exports = {
         res.send(datas);
       });
   },
+
   // upload: (req, res) => {},
   post: (req, res) => {
-    const password = crypto
-      .createHmac('sha512', secret)
-      .update(req.body.password)
-      .digest('hex');
-
-    console.log('req file', req);
     const data = {
       id: uuidv4(),
-      kode: req.body.kode,
-      username: req.body.username,
-      password: password,
       email: req.body.email,
       nama: req.body.nama,
       jenis_kelamin: req.body.jenis_kelamin,
-      hak_akses: req.body.hak_akses,
       po_id: req.body.po_id,
-      foto: req.file.path
+      foto: 'default.jpg'
     };
 
     knex(table)
       .insert(data)
       .then(datas => {
         res.send('success');
+        console.log('berhasil');
       })
       .catch(err => {
         res.send('error disini : ' + err);
+        console.log('gak berhasil', err);
       });
   },
 
   edit: (req, res) => {
     const data = {
-      kode: req.body.kode,
-      username: req.body.username,
-      password: req.body.password,
-      email: req.body.email,
       nama: req.body.nama,
       jenis_kelamin: req.body.jenis_kelamin,
-      hak_akses: req.body.hak_akses,
-      foto: req.file.path,
-      po_id: req.body.po_id,
       updated_at: knexDate
     };
     knex(table)
       .where('id', req.params.id)
       .update(data)
-      .then(datas => {
-        res.send('success update : ' + req.params.id);
+      .then(() => {
+        res.send({ message: 'success' });
       })
       .catch(err => {
         res.send('error disini : ' + err);
       });
   },
-
+  editByEmail: (req, res) => {
+    const data = {
+      nama: req.body.nama,
+      jenis_kelamin: req.body.jenis_kelamin,
+      updated_at: knexDate
+    };
+    knex(table)
+      .where('email', req.params.email)
+      .update(data)
+      .then(datas => {
+        res.send({ message: 'success' });
+      })
+      .catch(err => {
+        res.send('error disini : ' + err);
+      });
+  },
   delete: (req, res) => {
     knex(table)
       .where('id', req.params.id)

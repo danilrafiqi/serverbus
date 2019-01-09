@@ -22,11 +22,33 @@ module.exports = {
         res.send(datas);
       });
   },
+  allByPo: (req, res) => {
+    knex
+      .select()
+      .from('v_login')
+      .andWhere('po', req.params.po_id)
+      .then(datas => {
+        res.send(datas);
+      });
+  },
   detail: (req, res) => {
     knex
       .select()
       .from(table)
       .where('email', req.params.email)
+      .then(datas => {
+        res.send(datas);
+      })
+      .catch(err => {
+        res.send({ message: err });
+      });
+  },
+  detailByPo: (req, res) => {
+    knex
+      .select()
+      .from('v_login')
+      .where('email', req.params.email)
+      .andWhere('po', req.params.po_id)
       .then(datas => {
         res.send(datas);
       })

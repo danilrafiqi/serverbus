@@ -21,6 +21,26 @@ module.exports = {
       });
   },
 
+  allByPo: (req, res) => {
+    knex
+      .select(
+        'jadwal.*',
+        'bus.plat as bus',
+        'tujuan.pemberangkatan as tujuan_pemberangkatan',
+        'tujuan.pemberhentian as tujuan_pemberhentian',
+        'kelas.po_id as po_id'
+      )
+      .from(table)
+      .innerJoin('bus', 'jadwal.bus_id', '=', 'bus.id')
+      .innerJoin('tujuan', 'jadwal.tujuan_id', '=', 'tujuan.id')
+      .innerJoin('kelas', 'bus.kelas_id', '=', 'kelas.id')
+      .orderBy('jadwal.created_at', 'desc')
+      .where('po_id', req.params.po_id)
+      .then(datas => {
+        res.send(datas);
+      });
+  },
+
   detail: (req, res) => {
     knex
       .select()

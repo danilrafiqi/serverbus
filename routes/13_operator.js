@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userCtrl = require('../controllers/13_operatorCtrl');
 
+router.get('/:po_id/bypo', userCtrl.allByPo);
 router.get('/', userCtrl.all);
 router.get('/:id', userCtrl.detail);
 router.post('/', userCtrl.unggah, userCtrl.post);

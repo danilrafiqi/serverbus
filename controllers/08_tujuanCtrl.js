@@ -6,10 +6,22 @@ const uuidv4 = require('uuid/v4');
 module.exports = {
   all: (req, res) => {
     knex
-      .select('tujuan.*', 'rute.deskripsi as rute')
+      .select('tujuan.*', 'rute.deskripsi as rute', 'rute.po_id as po_id')
       .from(table)
       .innerJoin('rute', 'tujuan.rute_id', '=', 'rute.id')
       .orderBy('tujuan.created_at', 'desc')
+      .then(datas => {
+        res.send(datas);
+      });
+  },
+
+  allByPo: (req, res) => {
+    knex
+      .select('tujuan.*', 'rute.deskripsi as rute', 'rute.po_id as po_id')
+      .from(table)
+      .innerJoin('rute', 'tujuan.rute_id', '=', 'rute.id')
+      .orderBy('tujuan.created_at', 'desc')
+      .where('po_id', req.params.po_id)
       .then(datas => {
         res.send(datas);
       });
