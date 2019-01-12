@@ -10,13 +10,13 @@ exports.seed = function(knex, Promise) {
         {
           id: '0a172198-297a-4365-ba01-19ab0cb2c893',
           plat: 'BE4530PJ',
-          jumlah_kursi: '60',
+          jumlah_kursi: '25',
           kelas_id: '0a172198-297a-4365-ba01-c76c0cb2c893'
         },
         {
           id: '1a172198-297a-4365-ba01-19ab0cb2c893',
           plat: 'BE2222PJ',
-          jumlah_kursi: '40',
+          jumlah_kursi: '25',
           kelas_id: 'dc934680-f861-4407-b02a-1cb296efb279'
         },
         {
@@ -28,13 +28,13 @@ exports.seed = function(knex, Promise) {
         {
           id: '3a172198-297a-4365-ba01-19ab0cb2c893',
           plat: 'BE4531DM',
-          jumlah_kursi: '60',
+          jumlah_kursi: '25',
           kelas_id: '0a172198-297a-4365-ba01-c76c0cb2c893'
         },
         {
           id: '4a172198-297a-4365-ba01-19ab0cb2c893',
           plat: 'BE4532DM',
-          jumlah_kursi: '40',
+          jumlah_kursi: '25',
           kelas_id: 'dc934680-f861-4407-b02a-1cb296efb279'
         },
         {

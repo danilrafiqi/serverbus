@@ -61,7 +61,7 @@ module.exports = {
     knex
       .select()
       .from('cektiket')
-      .where('book_id', 'like', `${req.params.book_id}`)
+      .where('book_id', 'like', `${req.query.bookId}`)
       .then(datas => {
         res.send(datas);
       });
