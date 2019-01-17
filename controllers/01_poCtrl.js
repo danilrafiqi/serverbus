@@ -27,7 +27,6 @@ module.exports = {
   post: (req, res) => {
     const data = {
       id: uuidv4(),
-      kode: req.body.kode,
       nama: req.body.nama,
       alamat: req.body.alamat,
       no_hp: req.body.no_hp,
@@ -51,7 +50,6 @@ module.exports = {
   },
   edit: (req, res) => {
     const data = {
-      kode: req.body.kode,
       nama: req.body.nama,
       alamat: req.body.alamat,
       no_hp: req.body.no_hp,
