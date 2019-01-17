@@ -1,7 +1,7 @@
 exports.up = function(knex, Promise) {
   return knex.raw(`
     CREATE VIEW v_login AS
-    (SELECT 
+    SELECT 
     user.nama as nama, 
     login.email as email, 
     login.password as password, 
@@ -9,11 +9,11 @@ exports.up = function(knex, Promise) {
     'null' as po 
     
     FROM user 
-    INNER JOIN login ON login.email = user.email )
+    INNER JOIN login ON login.email = user.email 
     
     UNION
     
-    (SELECT 
+    SELECT 
     operator.nama as nama, 
     login.email as email, 
     login.password as password, 
@@ -21,7 +21,7 @@ exports.up = function(knex, Promise) {
     operator.po_id as po 
     
     FROM operator 
-    INNER JOIN login ON login.email = operator.email)
+    INNER JOIN login ON login.email = operator.email
   `);
 };
 
