@@ -1,5 +1,3 @@
-const uuidv4 = require('uuid/v4');
-
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
   return knex('regencies')
@@ -7,19 +5,6 @@ exports.seed = function(knex, Promise) {
     .then(function() {
       // Inserts seed entries
       return knex('regencies').insert([
-        { id: '1671', province_id: '16', name: 'PALEMBANG' },
-        { id: '1672', province_id: '16', name: 'PRABUMULIH' },
-        { id: '1673', province_id: '16', name: 'PAGAR ALAM' },
-        { id: '1674', province_id: '16', name: 'LUBUKLINGGAU' },
-        { id: '1701', province_id: '17', name: 'BENGKULU SELATAN' },
-        { id: '1702', province_id: '17', name: 'REJANG LEBONG' },
-        { id: '1703', province_id: '17', name: 'BENGKULU UTARA' },
-        { id: '1704', province_id: '17', name: 'KAUR' },
-        { id: '1705', province_id: '17', name: 'SELUMA' },
-        { id: '1706', province_id: '17', name: 'MUKOMUKO' },
-        { id: '1707', province_id: '17', name: 'LEBONG' },
-        { id: '1708', province_id: '17', name: 'KEPAHIANG' },
-        { id: '1709', province_id: '17', name: 'BENGKULU TENGAH' },
         { id: '1771', province_id: '17', name: 'BENGKULU' },
         { id: '1801', province_id: '18', name: 'LAMPUNG BARAT' },
         { id: '1802', province_id: '18', name: 'TANGGAMUS' },
@@ -88,36 +73,7 @@ exports.seed = function(knex, Promise) {
         { id: '3303', province_id: '33', name: 'PURBALINGGA' },
         { id: '3304', province_id: '33', name: 'BANJARNEGARA' },
         { id: '3305', province_id: '33', name: 'KEBUMEN' },
-        { id: '3306', province_id: '33', name: 'PURWOREJO' },
-        { id: '3307', province_id: '33', name: 'WONOSOBO' },
-        { id: '3308', province_id: '33', name: 'MAGELANG' },
-        { id: '3309', province_id: '33', name: 'BOYOLALI' },
-        { id: '3310', province_id: '33', name: 'KLATEN' },
-        { id: '3311', province_id: '33', name: 'SUKOHARJO' },
-        { id: '3312', province_id: '33', name: 'WONOGIRI' },
-        { id: '3313', province_id: '33', name: 'KARANGANYAR' },
-        { id: '3314', province_id: '33', name: 'SRAGEN' },
-        { id: '3315', province_id: '33', name: 'GROBOGAN' },
-        { id: '3316', province_id: '33', name: 'BLORA' },
-        { id: '3317', province_id: '33', name: 'REMBANG' },
-        { id: '3318', province_id: '33', name: 'PATI' },
-        { id: '3319', province_id: '33', name: 'KUDUS' },
-        { id: '3320', province_id: '33', name: 'JEPARA' },
-        { id: '3321', province_id: '33', name: 'DEMAK' },
-        { id: '3322', province_id: '33', name: 'SEMARANG' },
-        { id: '3323', province_id: '33', name: 'TEMANGGUNG' },
-        { id: '3324', province_id: '33', name: 'KENDAL' },
-        { id: '3325', province_id: '33', name: 'BATANG' },
-        { id: '3326', province_id: '33', name: 'PEKALONGAN' },
-        { id: '3327', province_id: '33', name: 'PEMALANG' },
-        { id: '3328', province_id: '33', name: 'TEGAL' },
-        { id: '3329', province_id: '33', name: 'BREBES' },
-        { id: '3371', province_id: '33', name: 'MAGELANG' },
-        { id: '3372', province_id: '33', name: 'SURAKARTA' },
-        { id: '3373', province_id: '33', name: 'SALATIGA' },
-        { id: '3374', province_id: '33', name: 'SEMARANG' },
-        { id: '3375', province_id: '33', name: 'PEKALONGAN' },
-        { id: '3376', province_id: '33', name: 'TEGAL' }
+        { id: '3306', province_id: '33', name: 'PURWOREJO' }
       ]);
     });
 };
