@@ -1,21 +1,21 @@
 // Update with your config settings.
 
 module.exports = {
-  development: {
-    client: 'mysql',
-    connection: {
-      host: 'localhost',
-      user: 'root',
-      password: '',
-      database: 'db_busnew'
-    },
-    migrations: {
-      directory: __dirname + '/db/migrations'
-    },
-    seeds: {
-      directory: __dirname + '/db/seeds'
-    }
-  },
+  // development: {
+  //   client: 'mysql',
+  //   connection: {
+  //     host: 'localhost',
+  //     user: 'root',
+  //     password: '',
+  //     database: 'db_bus2'
+  //   },
+  //   migrations: {
+  //     directory: __dirname + '/db/migrations'
+  //   },
+  //   seeds: {
+  //     directory: __dirname + '/db/seeds'
+  //   }
+  // },
 
   production: {
     client: 'sqlite3',
@@ -27,7 +27,21 @@ module.exports = {
     },
     seeds: {
       directory: __dirname + '/db/seeds'
-    }
+    },
+    useNullAsDefault: true
+  },
+  development: {
+    client: 'sqlite3',
+    connection: {
+      filename: __dirname + '/db/db_busnew.sqlite'
+    },
+    migrations: {
+      directory: __dirname + '/db/migrations'
+    },
+    seeds: {
+      directory: __dirname + '/db/seeds'
+    },
+    useNullAsDefault: true
   }
 
   // production: {
