@@ -9,7 +9,7 @@ exports.seed = function(knex, Promise) {
       return knex('user').insert([
         {
           id: '255f4c32-5678-4a2c-8cf2-f75c32fcf158',
-          email: 'bellamiftha280@gmail.com',
+          email: 'bellamifta289@gmail.com',
           nama: 'Bella Miftha Octavia',
           jenis_kelamin: 'p',
           foto: 'default.jpg'

@@ -22,6 +22,14 @@ exports.seed = function(knex, Promise) {
           jenis_kelamin: 'l',
           foto: 'default.jpg',
           po_id: '3ab51aac-f534-47e8-8184-f516077df3be'
+        },
+        {
+          id: '255f4c32-5678-4321-8cf2-f75c32fcf158',
+          email: 'petugas@gmail.com',
+          nama: 'Petugas',
+          jenis_kelamin: 'l',
+          foto: 'default.jpg',
+          po_id: '3ab51aac-f534-47e8-8184-f516077df3be'
         }
       ]);
     });
