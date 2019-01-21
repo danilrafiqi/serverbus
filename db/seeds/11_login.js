@@ -8,19 +8,19 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex('login').insert([
         {
-          email: 'gede@gmail.com',
+          email: 'gedearya359@gmail.com',
           hak_akses: 'admin',
           password:
             '8e3ecf2e6beb1dfb08c9fa612792d4fbf4558301719ef1a17ff4558295d96faa'
         },
         {
-          email: 'deni@gmail.com',
+          email: 'denysaputra1333@gmail.com',
           hak_akses: 'manager_po',
           password:
             '8e3ecf2e6beb1dfb08c9fa612792d4fbf4558301719ef1a17ff4558295d96faa'
         },
         {
-          email: 'bellamiftha280@gmail.com',
+          email: 'bellamifta289@gmail.com',
           hak_akses: 'manager',
           password:
             '8e3ecf2e6beb1dfb08c9fa612792d4fbf4558301719ef1a17ff4558295d96faa'
@@ -28,6 +28,12 @@ exports.seed = function(knex, Promise) {
         {
           email: 'danil.rafiqi@gmail.com',
           hak_akses: 'superadmin',
+          password:
+            '8e3ecf2e6beb1dfb08c9fa612792d4fbf4558301719ef1a17ff4558295d96faa'
+        },
+        {
+          email: 'petugas@gmail.com',
+          hak_akses: 'petugas',
           password:
             '8e3ecf2e6beb1dfb08c9fa612792d4fbf4558301719ef1a17ff4558295d96faa'
         }
